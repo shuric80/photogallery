@@ -1,4 +1,5 @@
-#-*-cofing:utf8 -*-
+#-*-cofing:utf-8 -*-
+
 import os
 import logging
 from flask import Flask
@@ -16,3 +17,6 @@ def create_app():
 def init_app(app):
     app.register_blueprint(gallery)
 
+app = create_app()
+init_app(app)
+    
