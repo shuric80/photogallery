@@ -1,0 +1,20 @@
+{
+  "name": "photogallery",
+  "homepage": "https://github.com/shuric80/photogallery",
+  "authors": [
+    "shuric80 <shuric80@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7"
+  }
+}
