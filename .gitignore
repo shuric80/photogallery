@@ -2,4 +2,6 @@
 app/static/
 env/
 activate
+bower_components/
+node_modules/
 
