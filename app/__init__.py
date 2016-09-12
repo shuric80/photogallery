@@ -3,6 +3,8 @@
 import os
 import logging
 from flask import Flask
+from flask.ext.bower import Bower
+
 from extlog import logger
 from  gallery import gallery
 
@@ -16,6 +18,7 @@ def create_app():
 
 def init_app(app):
     app.register_blueprint(gallery)
+    Bower(app)
 
 app = create_app()
 init_app(app)

@@ -8,6 +8,7 @@ class BaseConfig(object):
     SQLALCHEMY_DATABASE_URI = 'sqlite:///:memory:'
     CSRF_ENABLED = True
     ROOT_PATH = os.path.abspath(os.path.dirname(__file__))
+    BOWER_COMPONENTS_ROOT = '../bower_components'
 
 class DevelopmentConfig(BaseConfig):
     DEBUG= False

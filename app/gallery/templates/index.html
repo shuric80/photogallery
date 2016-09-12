@@ -3,9 +3,15 @@
   <head>
     <title>
       Bootstrap Gallery
-      </title>
-    </head>
+    </title>
+    <link href="{{ url_for('bower.static', filename='bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet">
+  </head>
   <body>
-
-    </body>
-  </html>
+        <div>
+          <span class="label label-primary">primary</span>
+      </div>
+    <script src="{{ url_for('bower.static',filename='jquery/dist/jquery.min.js') }}"></script>
+    <script src="{{ url_for('bower.static',filename='bootstrap/dist/js/bootstrap.min.js') }}"></script>
+  </body>
+</html>
