@@ -8,9 +8,31 @@
     <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet">
   </head>
   <body>
-        <div>
-          <span class="label label-primary">primary</span>
+    {% include 'header.html' %}
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xs-10  col-xs-offset-1">
+          <!--img src="{{ url_for('static',filename='img/header.png') }}"-->
+          <img class="img-fluid center-block" src="http://placehold.it/350x250">
+        </div>
       </div>
+    </div>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xs-8 col-xs-offset-2">
+          <div class="panel panel-info">
+            <div class="panel-heading">
+              <h4 class="panel-title">Title</h4> </div>
+            <div class="panel-body">
+              {% for i in range(20) %}
+              <li><h4>{{ i }}</h4></li>
+              {% endfor %}
+              <h4>body</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <script src="{{ url_for('bower.static',filename='jquery/dist/jquery.min.js') }}"></script>
     <script src="{{ url_for('bower.static',filename='bootstrap/dist/js/bootstrap.min.js') }}"></script>
   </body>
