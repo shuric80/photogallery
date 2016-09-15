@@ -1,21 +1,29 @@
-<nav class="navbar navbar-default navbar-fixed-top">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myTarget">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#">Site</a>
-    </div>
-    <div>
-      <div class="collapse navbar-collapse" id="myNavbar" >
-        <ul class="nav navbar-nav ">
-          <li><a href="#section1">About</a></li>
-          <li><a href="#section2">Contacts</a></li>
-          <li><a href="#section3">Registry</a></li>
-        </ul>
-      </div>
-    </div>
+<header>
+  <div class="header-top clearfix">
+    <h1 class="l-left"><a href="#firstSection">Your Logo</a></h1>
+    <a class="l-right toggle-menu" href="#">
+      <i></i>
+      <i></i>
+      <i></i>
+    </a>
   </div>
-</nav>
+  <nav class="hide">
+    <ul id="menu">
+      <li data-menuanchor="firstSection">
+        <a href="#firstSection" title="First Section">About</a>
+      </li>
+      <li data-menuanchor="secondSection">
+        <a href="#secondSection" title="First Slide">Description</a>
+      </li>
+      <!--li data-menuanchor="secondSection/1">
+        <a href="#secondSection/1" title="Second Slide">After</a>
+      </li-->
+      <li data-menuanchor="thirdSection">
+        <a href="#thirdSection" title="Third Section">Contacts</a>
+      </li>
+      <li data-menuanchor="fourthSection">
+        <a href="#fourthSection" title="Fourth Section">Registration</a>
+      </li>
+    </ul>
+  </nav>
+</header>

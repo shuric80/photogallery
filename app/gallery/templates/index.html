@@ -5,54 +5,25 @@
     <title>
       Bootstrap Gallery
     </title>
-    <link href="{{ url_for('bower.static', filename='bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
+    <!-- link href="{{ url_for('bower.static', filename='bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet"-->
     <link href="{{ url_for('bower.static', filename='fullpage.js/dist/jquery.fullpage.css') }}" rel="stylesheet">
-    {# <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet"> #}
+    <link href="{{ url_for('static', filename='css/main.min.css') }}" rel="stylesheet"> 
   </head>
   
-  <body data-spy="scroll" data-target=".navbar" data-offset="50">
+  <body>
     {% include 'header.html' %}
-    <div id="section1" class="container-fluid">
-      <div class="row-fluid">
-        <div class="col-md-8 col-md-offset-2 col-sm-12">
-          <div id="slidebox" class="carousel slide" data-ride="carousel">
-            <ol class="carousel-indicators">
-              {% for i in images %}
-                <li data-target="#slidebox"
-                    data-slide-to="{{ loop.index }}"
-                    {% if loop.index==1 %} class="active"{% endif %}>
-                </li>
-
-{% endfor %}
-            </ol>
-            
-            <div class="carousel-inner">
-              {% for image in images %}
-                <div class="item{% if loop.index==1 %} active{% endif %} ">
-                  <img src ="{{ image.path }}" class="img-fluid center-block" alt="">
-                  <div class="carousel-caption">
-                    <h3>{{ image.title }}</h3>
-                    <p>{{ image.caption }}</p>
-                  </div>
-                </div>
-              {% endfor %}
-            </div>
-          </div>
-        </div> 
-      </div>
-    </div>
-    <div id="section2" class="container-fluid">
+    <div class="container-fluid">
       <div class="row">
-        <div class="col-md-8 col-md-offset-2 col-sm-12">
-          
-          {{ content|safe }}
+        <div class="col-lg-8 col-md-10 col-sm-12 col-lg-offset-2 col-md-offset-1">
+          {% include 'content.html' %}
         </div>
       </div>
     </div>
-    <div id="section3" class="container-fluid">
-    </div>
-
+    
     <script src="{{ url_for('bower.static',filename='jquery/dist/jquery.min.js') }}"></script>
-    <script src="{{ url_for('bower.static',filename='bootstrap/dist/js/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('bower.static', filename='fullpage.js/dist/jquery.fullpage.min.js') }}"></script>
+    <!-- script src="{{ url_for('bower.static',filename='bootstrap/dist/js/bootstrap.min.js') }}"></script -->
+    <script src="{{ url_for('static',filename='js/main.min.js') }}"></script>
+
   </body>
 </html>

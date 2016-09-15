@@ -15,11 +15,11 @@ module.exports = function(grunt) {
         
         uglify: {
             options: {
-                banner: '/*\n <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> \n/\n'
+                banner: '/*\n <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> \n*/\n'
             },
             build: {
                 files:{
-                    'app/static/js/script.min.js':'app/assets/js/*.js'
+                    'app/static/js/main.min.js':'app/assets/js/*.js'
                 }
             }
         },
@@ -30,6 +30,18 @@ module.exports = function(grunt) {
             },
             all: ['Gruntfile.js','app/assets/js/*.js']
         },
+        cssmin:{
+            options: {
+                shorthandCompacting: false,
+                roudingPrecision:-1
+            },
+            target:{
+                files:
+                {
+                    'app/static/css/main.min.css': 'app/assets/stylesheet/main.css'
+                }
+            }
+        },
         less:
         {
             development: {
@@ -38,7 +50,7 @@ module.exports = function(grunt) {
                     report:true
                 },
                 files: {
-                    'app/static/css/main.css':'app/assets/stylesheet/main.less'
+                    'app/assets/stylesheet/main.css':'app/assets/stylesheet/main.less'
                     
                 }
             }
