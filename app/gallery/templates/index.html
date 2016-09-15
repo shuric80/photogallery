@@ -6,6 +6,7 @@
       Bootstrap Gallery
     </title>
     <link href="{{ url_for('bower.static', filename='bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('bower.static', filename='fullpage.js/dist/jquery.fullpage.css') }}" rel="stylesheet">
     {# <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet"> #}
   </head>
   
@@ -41,7 +42,12 @@
       </div>
     </div>
     <div id="section2" class="container-fluid">
-      {{ content|safe }}
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2 col-sm-12">
+          
+          {{ content|safe }}
+        </div>
+      </div>
     </div>
     <div id="section3" class="container-fluid">
     </div>

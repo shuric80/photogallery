@@ -33,7 +33,7 @@ def index():
         html_body = markdown_to_html(md_text)
 
     images = list()
-    for i in range(10):
+    for i in range(4):
         img = Image('title','caption')
         images.append(img)
         
