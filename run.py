@@ -26,7 +26,7 @@ def create_admin():
     root.save()
     
 
-manager.add_command('shell', Shell(make_context=lambda:{'app':app, 'db':db}))
+manager.add_command('shell', Shell(make_context=lambda:{'app':app}))
 manager.add_command('db', MigrateCommand)
 
 

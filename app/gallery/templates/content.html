@@ -1,7 +1,7 @@
 <div id="fullpage">
   <section class="vertical-scrolling">
     <h2>About</h2>
-          {{ text|safe }}
+    {{ text|safe }}
     <div class="scroll-icon">
       <p>Jump into the registration</p>
       <a href="#fourthSection" class="icon-up-open-big"></a>
@@ -30,6 +30,14 @@
   </section>
 
   <section class="vertical-scrolling">
-    <h2>Registration</h2> 
+    <form  id="formz" method="post">
+      <legend>Registration</legend>
+      <label for="name">Name</label>
+      <input id="name" name="name" type="name"/>
+      <label for="email">Email:</label>
+      <input id="email" name="email" type="email"/>
+      <input value="send" type="submit"/>
+      <div id="form-message"></div>
+    </form>
   </section>
 </div>

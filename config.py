@@ -9,6 +9,12 @@ class BaseConfig(object):
     CSRF_ENABLED = True
     ROOT_PATH = os.path.abspath(os.path.dirname(__file__))
     BOWER_COMPONENTS_ROOT = '../bower_components'
+    RECAPTCHA_PARAMETERS = {'hl': 'zh', 'render': 'explicit'}
+    RECAPTCHA_PUBLIC_KEY = 'public'
+    RECAPTCHA_USE_SSL = False
+    RECAPTCHA_PUBLIC_KEY = 'public'  
+    RECAPTCHA_PRIVATE_KEY = 'private'
+    RECAPTCHA_OPTIONS = {'theme': 'white'}
 
 class DevelopmentConfig(BaseConfig):
     DEBUG= False
