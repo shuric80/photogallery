@@ -50,7 +50,7 @@ module.exports = function(grunt) {
                     report:true
                 },
                 files: {
-                    'app/assets/stylesheet/main.css':'app/assets/stylesheet/main.less'
+                    'app/assets/stylesheet/main.css':'app/assets/stylesheet/*.less'
                     
                 }
             }
@@ -69,6 +69,6 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('main-bower-files');
 
-    grunt.registerTask('default', ['jshint']);
+    grunt.registerTask('default', ['less','cssmin']);
 
 };

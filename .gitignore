@@ -1,5 +1,6 @@
 *.pyc
-app/static/
+app/static/js/
+app/static/css/
 env/
 activate
 bower_components/

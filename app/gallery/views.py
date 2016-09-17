@@ -10,7 +10,7 @@ from jinja2 import TemplateNotFound
 
 from . import gallery
 from . import logger
-from form import RegisterForm
+#from form import RegisterForm
 
 logger.info('Load views')
 
@@ -32,7 +32,7 @@ class Image:
 
 @gallery.route('/', methods=['GET'])
 def index():
-    form = RegisterForm()
+    #form = RegisterForm()
 
     with open('app/gallery/test.md','r') as file:
         md_text = file.read()
@@ -43,7 +43,7 @@ def index():
         img = Image('title','caption')
         images.append(img)
         
-    return render_template('index.html', text=html_body[:100], form= form)
+    return render_template('index.html', text=html_body[:100])
     
 
 @gallery.route('/registration', methods=['POST'])
