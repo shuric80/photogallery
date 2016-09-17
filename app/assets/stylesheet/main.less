@@ -267,7 +267,10 @@
             section { 
 	            text-align: center;
                 /*background: url('https://unsplash.it/1910/1221?image=626') no-repeat center / cover;*/
+
             }
+            
+            
 
             h2 {
 	            text-transform: lowercase;
@@ -346,3 +349,26 @@
                 }
             }
 
+            
+
+            section.page_1{
+                @base_url:'/static/img/';
+                background-image:url("@{base_url}/test1.jpg");
+                background-position: top left, 100% 30%;
+                background-repeat: repeat-x, no-repeat;
+            }
+
+            section.page_2{
+                @base_url:'/static/img/';
+                background-image:url("@{base_url}/test2.jpg");
+                background-position: center, 100% 100%;
+                background-repeat:  no-repeat;
+            }
+            section.page_3{
+                @base_url:'/static/img/';
+                background-image:url("@{base_url}/test3.jpg") ;
+                background-position: center , 100% 100%;
+                background-repeat:  no-repeat;
+            }
+            
+            
