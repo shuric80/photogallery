@@ -38,7 +38,7 @@ module.exports = function(grunt) {
             target:{
                 files:
                 {
-                    'app/static/css/main.min.css': 'app/assets/stylesheet/main.css'
+                    'app/static/css/main.min.css': 'app/static/css/main.css'
                 }
             }
         },
@@ -50,7 +50,7 @@ module.exports = function(grunt) {
                     report:true
                 },
                 files: {
-                    'app/assets/stylesheet/main.css':'app/assets/stylesheet/*.less'
+                    'app/static/css/main.css':'app/assets/stylesheet/*.less'
                     
                 }
             }
