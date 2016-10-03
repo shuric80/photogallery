@@ -43,7 +43,7 @@ def index():
         img = Image('title','caption')
         images.append(img)
         
-    return render_template('index.html', text=html_body[:100])
+    return render_template('index.html')
     
 
 @gallery.route('/registration', methods=['POST'])
