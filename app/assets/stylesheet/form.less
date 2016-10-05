@@ -49,42 +49,28 @@ div.register_form {
 	    width:220px; 
 	    padding:5px 8px;
     }
-       
-.contact_form output {
+    
+    .contact_form output {
+        height:30px; 
+	    width:220px; 
+	    padding:5px 8px;
+	    
+	}
 
-  position: absolute;
-	  background-image: -moz-linear-gradient(top, #444444, #999999);
-	  background-image: -o-linear-gradient(top, #444444, #999999);
-	  background-image: -webkit-gradient(linear, left top, left bottom, from(#444444), to(#999999));
-	  background-image: -webkit-linear-gradient(top, #444444, #999999);
-	  width: 40px;
-	  height: 30px;
-	  text-align: center;
-	  color: white;
-	  border-radius: 10px;
-	  display: inline-block;
-	  font: bold 15px/30px Georgia;
-	  bottom: 60%;
-	  left: 0;
-	  margin-left: -1%;
-	}
-	output:after {
-	  content: "";
-	  position: absolute;
-	  width: 0;
-	  height: 0;
-	  border-top: 10px solid #999999;
-	  border-left: 5px solid transparent;
-	  border-right: 5px solid transparent;
-	  top: 100%;
-	  left: 50%;
-	  margin-left: -5px;
-	  margin-top: -1px;
-	}
     .contact_form textarea {padding:8px; width:300px;}
     .contact_form button {margin-left:156px;}
 
 	/* form element visual styles */
+    	.contact_form output { 
+		box-shadow: 0px 0px 3px #ccc, 0 10px 15px #eee inset;
+		border-radius:2px;
+		padding-right:30px;
+		-moz-transition: padding .25s; 
+		-webkit-transition: padding .25s; 
+		-o-transition: padding .25s;
+		transition: padding .25s;
+	}
+
 	.contact_form input, .contact_form textarea { 
 		border:1px solid #aaa;
 		box-shadow: 0px 0px 3px #ccc, 0 10px 15px #eee inset;
@@ -95,7 +81,7 @@ div.register_form {
 		-o-transition: padding .25s;
 		transition: padding .25s;
 	}
-	.contact_form input:focus, .contact_form textarea:focus {
+	.contact_form input:focus, .contact_form textarea:focus,.contact_form output:focus {
 		                           background: #fff; 
 		                           border:1px solid #555; 
 		                           box-shadow: 0 0 3px #aaa; 
@@ -183,59 +169,59 @@ div.register_form {
 @range_height:12px;
 @range_width:75%;
 
-        input[type='range'] {
-            -webkit-appearance: none;
-            appearance: none;
-            -moz-appearance: none;
-            border-radius: 5px;
-            box-shadow: inset 1px 1px 1px rgba(000,000,000,0.25);
-            background-color: #FFF;
-            height: @range_height;
-            vertical-align: middle;
-            width: @range_width;
-        }
-        
-        input[type=range]::-webkit-slider-runnable-track {
-            -webkit-appearance: none;
-            appearance: none;
-            border-radius: 5px;
-            box-shadow: inset 1px 1px 1px rgba(000,000,000,0.25);
-            background-color: #FFF;
-            height: @range_height;
-            width: @range_width;
-            vertical-align:middle;
-            border:solid 1px rgba(0,0,0,0.25);
-        }
-        input[type='range']::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            border-radius: 10px;
-            background-color: #FFF;
-            box-shadow:inset 0px 1px 0px rgba(000,000,000,0.5);
-            border: 1px solid #999;
-            height: @range_height*2;
-            width: @range_width/5;
-            vertical-align:middle;
-            margin-top: -6px;
-        }
-        input[type='range']::-moz-range-track {
-            -moz-appearance: none;
-            border-radius: 5px;
-            box-shadow: inset 1px 1px 1px rgba(000,000,000,0.25);
-            background-color: #FFF;
-            height: @range_height;
-            border:solid 1px rgba(0,0,0,0.25);
-            vertical-align:middle;
-            margin:0;
-            padding:0;
-            width: @range_width;
-         
-        }
-        input[type='range']::-moz-range-thumb {
-            -moz-appearance: none;
-            border-radius: 10px;
-            background-color: #FFF;
-            box-shadow:inset 0px 1px 0px rgba(000,000,000,0.5);
-            border: 1px solid #999;
-            height: @range_height*2;
-            width: @range_width/5;
-        }
+input[type='range'] {
+    -webkit-appearance: none;
+    appearance: none;
+    -moz-appearance: none;
+    border-radius: 5p;
+    box-shadow: inset 1px 1px 1px rgba(000,000,000,0.25);
+    background-color: #FFF;
+    height: @range_height;
+    vertical-align: middle;
+    width: @range_width;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+    -webkit-appearance: none;
+    appearance: none;
+    border-radius: 5px;
+    box-shadow: inset 1px 1px 1px rgba(000,000,000,0.25);
+    background-color: #FFF;
+    height: @range_height;
+    width: @range_width;
+    vertical-align:middle;
+    border:solid 1px rgba(0,0,0,0.25);
+}
+input[type='range']::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    border-radius: 10px;
+    background-color: #FFF;
+    box-shadow:inset 0px 1px 0px rgba(000,000,000,0.5);
+    border: 1px solid #999;
+    height: @range_height*2;
+    width: @range_width/5;
+    vertical-align:middle;
+    margin-top: -6px;
+}
+input[type='range']::-moz-range-track {
+    -moz-appearance: none;
+    border-radius: 5px;
+    box-shadow: inset 1px 1px 1px rgba(000,000,000,0.25);
+    background-color: #FFF;
+    height: @range_height;
+    border:solid 1px rgba(0,0,0,0.25);
+    vertical-align:middle;
+    margin:0;
+    padding:0;
+    width: @range_width;
+    
+}
+input[type='range']::-moz-range-thumb {
+    -moz-appearance: none;
+    border-radius: 10px;
+    background-color: #FFF;
+    box-shadow:inset 0px 1px 0px rgba(000,000,000,0.5);
+    border: 1px solid #999;
+    height: @range_height*2;
+    width: @range_width/5;
+}
