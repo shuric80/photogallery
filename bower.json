@@ -16,6 +16,7 @@
   ],
   "dependencies": {
     "bootstrap": "^3.3.7",
-    "fullpage.js": "^2.8.6"
+    "fullpage.js": "^2.8.6",
+    "bootbox.js": "^4.4.0"
   }
 }

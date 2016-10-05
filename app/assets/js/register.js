@@ -1,17 +1,28 @@
 $(function(){
     $('#form_registration').submit(function(event){
-         event.preventDefault();
-        var value = $('.range').getValue();
-        console.log(value);
+        event.preventDefault();
         data = $('#form_registration').serialize();
         $.ajax({
             type: 'POST',
             url: 'registration',
             data: data,
             success: function(e){
+                bootbox.alert({
+                    title:'Registration',
+                    message: '<h4>Thank you! Wait confirm email</h4>',
+                    size:'small',
+                    callback: function(){
+                        $("#form_registration").find("input, textarea").val("");
+                    }
+                });
             },
             error: function(e,f){
-                console.log('error');
+                bootbox.alert({
+                    title:'Error!',
+                    message:'<h4>You are not registration</h4>',
+                    size:'small'
+                });
+
             }
         });
     });
