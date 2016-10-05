@@ -69,6 +69,6 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('main-bower-files');
 
-    grunt.registerTask('default', ['less','cssmin']);
+    grunt.registerTask('default', ['jshint','uglify','less','cssmin']);
 
 };
