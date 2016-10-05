@@ -18,7 +18,9 @@
                 <span class="form_hint">Proper format phone</span>
             </li><li>
                 <label for="rangeInput">Dance experience</label>
-                <input id="rangeInput" list="rangeList" type="range" min="0" value="0" max="5" step="1"> onchange="document.getElementById('rangeValue').innerHTML=this.value;"><span id="rangeValue">1</span>years.              
+
+                <input id="rangeInput" oninput="rangeOutput.value=rangeInput.value" type="range" min="0" value="0" max="5" step="1">
+                <output id="outputRange" name="rangeOutput">0</output>
             </li><li>
                 <label for="message">Message</label>
                 <textarea name="message" cols="40" ros="6" spellcheck="true"></textarea>
