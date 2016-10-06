@@ -4,14 +4,11 @@ import sys
 from datetime import datetime
 
 from sqlalchemy import Boolean, Column, Integer,Unicode, Date
-from sqlalchemy import ForeignKey, create_engine
-from sqlalchemy.ext.declarative import declarative_base
 
-engine = create_engine('sqlite:///mail.db', echo=False)
-Base = declarative_base()
+from app import db
 
 
-class User(Base):
+class User(db.Model):
     __tablename__ = 'user'
 
     id = Column(Integer, primary_key=True)
@@ -23,10 +20,11 @@ class User(Base):
        
 
 
-class Content(Base):
+class Content(db.Model):
     __tablename__ = 'content'
 
     id = Column(Integer, primary_key=True)
     content = Column(Unicode(2058))
     tstamp = Column(Date, default = datetime.utcnow)
     hidden = Column(Boolean, default = True)
+

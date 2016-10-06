@@ -9,7 +9,7 @@ from app.extlog import logger
 
 logger.info('Start app')
 
-#migrate = Migrate(app, db)
+migrate = Migrate(app, db)
 manager = Manager(app)
 
 @manager.command
