@@ -7,42 +7,38 @@
             <div class="col-lg-5 col-sm-6">
                 <hr class="section-heading-spacer">
                 <div class="clearfix"></div>
-                <h2 class="section-heading">Near event:<br>{{ title_0|safe }}</h2>
-                <p class="lead">{{ description_0|safe }}</p>
+                <h2 class="section-heading">{{ content.head|safe }}<br>{{ content.title|safe }}</h2>
+                <p class="lead">{{ content.txt|safe }}</p>
             </div>
             <div class="col-lg-5 col-lg-offset-2 col-sm-6">
-                <img class="img-responsive" src="{{ photo_0 }}" alt="">
+                <img class="img-responsive" src="{{ content.photo }}" alt="">
             </div>
         </div>
 
     </div>
     <!-- /.container -->
-
 </div>
+
 <!-- /.content-section-a -->
-
 <div class="content-section-b">
-
     <div class="container">
-
         <div class="row">
             <div class="col-lg-5 col-lg-offset-1 col-sm-push-6  col-sm-6">
                 <hr class="section-heading-spacer">
                 <div class="clearfix"></div>
-                <h2 class="section-heading">Next events<br>{{ title_1|safe }}</h2>
-                <p class="lead">{{ description_1|safe }}</p>
+                <h2 class="section-heading">{{ content.head}}<br>{{ content.title|safe }}</h2>
+                <p class="lead">{{ content.txt|safe }}</p>
             </div>
             <div class="col-lg-5 col-sm-pull-6  col-sm-6">
-                <img class="img-responsive" src="{{ photo_1 }}" alt="">
+                <img class="img-responsive" src="{{ content.photo }}" alt="">
             </div>
         </div>
-
     </div>
     <!-- /.container -->
 
 </div>
 <!-- /.content-section-b -->
-
+<a name="register"></a>
 <div class="content-section-a">
 
     <div class="container">
@@ -51,11 +47,11 @@
             <div class="col-lg-5 col-sm-6">
                 <hr class="section-heading-spacer">
                 <div class="clearfix"></div>
-                <h2 class="section-heading">Registration:<br>{{ title_2|safe }}</h2>
+                <h2 class="section-heading">Registration:<br>fill this form</h2>
                 <p class="lead">{% include 'form.html' %}</p>
             </div>
             <div class="col-lg-5 col-lg-offset-2 col-sm-6">
-                <img class="img-responsive" src="{{ photo_2 }}" alt="">
+                <img class="img-responsive" src="{{ logo }}" alt="">
             </div>
         </div>
 
@@ -92,7 +88,3 @@
     </div>
     <!-- /.container -->
 </div>
-<!-- ./notification -->
-<div class="alert alert-success" role="alert">
-  <h4>ping</h4>
-  </div>
