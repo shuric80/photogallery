@@ -1,19 +1,20 @@
 #-*- coding:utf-8 -*-
 import  markdown 
+
 from flask import render_template, abort, \
     request, flash, \
     redirect, Response, \
-    jsonify
+    jsonify, Blueprint
 
 from jinja2 import TemplateNotFound
 
-from . import gallery
-from . import logger
+#from . import gallery
+from app import logger
 from models import User
 
-#from form import RegisterForm
-
 logger.info('Load views')
+
+mod = Blueprint('event',__name__, url_prefix='/event') 
 
 class Content():
     def __init__(self):
@@ -32,13 +33,13 @@ def markdown_to_html(md_txt):
     return html
 
 
-@gallery.route('/', methods=['GET'])
+@mod.route('/', methods=['GET'])
 def index():
     content =  Content()
     return render_template('index.html',content=content)
     
 
-@gallery.route('/registration', methods=['POST'])
+@mod.route('/registration', methods=['POST'])
 def register():
     logger.debug('registration')
     if request.method == 'POST':
@@ -53,17 +54,3 @@ def register():
 
     return jsonify('ok')
 
-# e.g. failed to parse json
-@gallery.errorhandler(400)
-def page_not_found(e):
-    return resp(400, {})
-
-
-@gallery.errorhandler(404)
-def page_not_found(e):
-    return resp(400, {})
-
-
-@gallery.errorhandler(405)
-def page_not_found(e):
-    return resp(405, {})

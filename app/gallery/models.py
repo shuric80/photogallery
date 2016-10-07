@@ -1,10 +1,7 @@
 #-*- coding:utf-8 -*-
-import sys
 
 from datetime import datetime
-
 from sqlalchemy import Boolean, Column, Integer,Unicode, Date
-
 from app import db
 
 

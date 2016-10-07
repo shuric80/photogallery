@@ -4,10 +4,12 @@ import subprocess
 from flask.ext.script import Shell, Manager
 from flask_migrate import Migrate, MigrateCommand
 
-from app import app#create_app, init_app
+from app import app, db
 from app.extlog import logger
 
 logger.info('Start app')
+
+from app.gallery.models import User
 
 migrate = Migrate(app, db)
 manager = Manager(app)
@@ -22,7 +24,7 @@ def create_admin():
     db.drop_all()
     db.create_all()
 
-    root = User(username='admin',email='admin@mail.ru', password='admin')
+    root = User(username='admin',email='admin@mail.ru',tel="asdsd")
     root.save()
     
 
