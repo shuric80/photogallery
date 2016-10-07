@@ -4,18 +4,14 @@ import os
 
 class BaseConfig(object):
     DEBUG = False
-    SECRET_KEY = "adasae23"
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///base.db'
+    SECRET_KEY = "adqacfsae4adasae23"
+    DATABASE_URL = os.path.join(os.path.dirname(__file__),'app.db')
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///{}'.format(DATABASE_URL)
     CSRF_ENABLED = True
-    ROOT_PATH = os.path.abspath(os.path.dirname(__file__))
     BOWER_COMPONENTS_ROOT = '../bower_components'
-    RECAPTCHA_PARAMETERS = {'hl': 'zh', 'render': 'explicit'}
-    RECAPTCHA_PUBLIC_KEY = 'public'
-    RECAPTCHA_USE_SSL = False
-    RECAPTCHA_PUBLIC_KEY = 'public'  
-    RECAPTCHA_PRIVATE_KEY = 'private'
-    RECAPTCHA_OPTIONS = {'theme': 'white'}
+    SQLALCHEMY_TRACK_MODIFICATIONS = True
 
+    
 class DevelopmentConfig(BaseConfig):
     DEBUG= False
 

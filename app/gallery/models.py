@@ -23,5 +23,5 @@ class Content(db.Model):
     id = Column(Integer, primary_key=True)
     content = Column(Unicode(2058))
     tstamp = Column(Date, default = datetime.utcnow)
-    hidden = Column(Boolean, default = True)
+
 

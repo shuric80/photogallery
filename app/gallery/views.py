@@ -50,7 +50,5 @@ def register():
         user.tel = request.form['tel']
         user.msg = request.form['msg']
 
-        
-
     return jsonify('ok')
 
