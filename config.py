@@ -11,6 +11,17 @@ class BaseConfig(object):
     BOWER_COMPONENTS_ROOT = '../bower_components'
     SQLALCHEMY_TRACK_MODIFICATIONS = True
 
+    # email server
+    MAIL_SERVER = 'smtp.googlemail.com'
+    MAIL_PORT = 465
+    MAIL_USE_TLS = False 
+    MAIL_USE_SSL = True
+    MAIL_USERNAME = 'shuric80@gmail.com'
+    MAIL_PASSWORD = 'mvgdwssbsgugejoa'
+
+    # administrator list
+    ADMINS = ['shuric80@gmail.com']
+
     
 class DevelopmentConfig(BaseConfig):
     DEBUG= False

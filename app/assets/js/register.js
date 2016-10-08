@@ -4,7 +4,7 @@ $(function(){
         data = $('#form_registration').serialize();
         $.ajax({
             type: 'POST',
-            url: 'registration',
+            url: '/event/registration',
             data: data,
             success: function(e){
                 bootbox.alert({

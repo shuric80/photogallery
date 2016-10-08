@@ -3,22 +3,24 @@
 import os
 import sys
 import logging
-from flask import Flask
+from flask import Flask, render_template
 from flask_bower import Bower
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate, MigrateCommand
 from flask_script import Shell, Manager
-
+from flask_mail import Mail
 
 from extlog import logger
 
-app =Flask(__name__)
-app.config.from_object('config.DebugConfig')
+app =Flask(__name__, template_folder='templates')
 
-print app.config
+app.config.from_object('config.DebugConfig')
 
 db = SQLAlchemy(app)
 
+mail = Mail(app)
+
+Bower(app)
 """
     GENERATE SECRET KEY
    """
@@ -42,7 +44,7 @@ if not app.config['DEBUG']:
 
 @app.errorhandler(404)
 def not_found(error):
-    return render_to_template('404.html'), 404
+    return render_template('404.html'), 404
 
 migrate = Migrate(app, db)
 manager = Manager(app)
