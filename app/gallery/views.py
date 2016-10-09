@@ -3,17 +3,15 @@
 from threading import Thread
 import  markdown 
 
-from flask import render_template, abort, \
-    request, flash, \
-    redirect, Response, \
+from flask import render_template,\
+    request,  Response, \
     jsonify, Blueprint
 
-from jinja2 import TemplateNotFound
-
-#from . import gallery
 from app import logger, mail, app
-from models import User, Admin
+from models import User, SuperUser, Content
 from flask_mail import Message
+
+from flask import jsonify
 
 logger.info('Load views')
 
@@ -22,9 +20,11 @@ mod = Blueprint('event',__name__, url_prefix='/event', template_folder='template
 def _send_async_email(msg):
     with app.app_context():
         mail.send(msg)
+        logger.debug('mail send ok')
 
-def _send_email_backup(user):
-    admin =Admin.query.fisrt()
+        
+def _send_email_to_admin(user):
+    admin = SuperUser.query.first()
     subject = 'new user'
     email_sender = app.config.get('ADMINS')[0]
     
@@ -36,7 +36,7 @@ def _send_email_backup(user):
 
     
         
-def _send_mail(user):
+def _send_mail_to_user(user):
     subject = 'Registration'
     email_sender = app.config.get('ADMINS')[0]
     
@@ -58,8 +58,9 @@ def markdown_to_html(md_txt):
 
 @mod.route('/', methods=['GET'])
 def index():
-
-    return render_template('index.html',content=None)
+    content = Content().query.first()
+        
+    return render_template('index.html',content=content )
     
 
 @mod.route('/registration', methods=['POST'])
@@ -74,20 +75,21 @@ def register():
 
         if not user.is_valid:
             logger.error('No valid form. Request:%s' % request)
-            return Response('Error:')
+            return jsonify('Error:')
 
         try:
            user.save()
         except:
             logger.error('Don\'t save in base. Request:%s' %request)
-            return Response('Error')
+            return jsonify('Error')
         
         logger.info('Register:Done!')
-        _send_mail(user)
-        _send_email_backup(user)
-        return Response('ok')
+        
+        _send_mail_to_user(user)
+        _send_email_to_admin(user)
+           
+        return jsonify('ok')
 
     else:
-        return Response('Error:')
+        return jsonify('Error:')
 
-    

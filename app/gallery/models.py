@@ -1,40 +1,67 @@
 #-*- coding:utf-8 -*-
 
-import bcrypt
+from app import bcrypt
 from datetime import datetime
-from sqlalchemy import Boolean, Column, Integer,Unicode, Date
+from sqlalchemy import  Column, Integer, Unicode,Text, DateTime
+from sqlalchemy.ext.hybrid import hybrid_property
+from flask_admin.contrib.sqla import ModelView
+
 from app import db
+from app import admin as superuser
+from admin import TestAdmin
 
 class MixinModel:
     def save(self):
         db.session.add(self)
         db.session.commit()
 
-class Admin(db.Model, MixinModel):
-    __tablename__ = 'user'
+        
+class SuperUser(db.Model, MixinModel):
+    __tablename__ = 'superuser'
+    
     id = Column(Integer, primary_key=True)
     login = Column(Unicode(128), nullable=True)
     email = Column(Unicode(128), nullable=True)
-    password_hash = Column(Unicode(1028), nullable=True)
+    _password_hash = Column(Unicode(128), nullable=True)
 
-    def check_password(self,plain_text_password):
-        return bcrypt.checkpw(plain_text_password,self.password_hash)
+    @hybrid_property
+    def password(self):
+        return self._password_hash
+
+    @password.setter
+    def _set_password(self, plaintext):
+        self._password_hash = bcrypt.generate_password_hash(plaintext)
+
+        
+    def is_check_password(self, plaintext):
+        return bcrypt.check_password_hash(self._password_hash, plaintext)
+
+    def is_authenticated(self):
+        return True
  
-    @property
-    def password(self, password_text):
-        self.password_hash = bcrypt.hashpw(password_text, bcrypt.gensalt())
+    def is_active(self):
+        return True
+ 
+    def is_anonymous(self):
+        return False
+ 
+    def get_id(self):
+        return unicode(self.id)
+ 
+    def __repr__(self):
+        return '<User %r>' % (self.login)
 
         
         
 class User(db.Model, MixinModel):
-    __tablename__ = 'register_user'
+    __tablename__ = 'user'
 
     id = Column(Integer, primary_key=True)
     name = Column(Unicode(128),nullable=False)
     tel = Column(Unicode(20), nullable=False)
     email = Column(Unicode(64), nullable=False)
     message = Column(Unicode(1024))
-    tstamp = Column(Date, default = datetime.utcnow)
+    tstamp = Column(DateTime, default = datetime.utcnow)
 
     @property
     def is_valid(self):
@@ -44,22 +71,15 @@ class User(db.Model, MixinModel):
             return False
 
 
-
 class Content(db.Model, MixinModel):
     __tablename__ = 'content'
 
     id = Column(Integer, primary_key=True)
-    content = Column(Unicode(2058))
-    tstamp = Column(Date, default = datetime.utcnow)
+    title = Column(Unicode(512))
+    text = Column(Text(10000))
+    tstamp = Column(DateTime, default = datetime.utcnow)
 
 
-
-    
-class Mail:
-    __tablename__ = 'mail'
-
-    id = Column(Integer, primary_key=True)
-    subject = Column(Unicode(1024))
-    body = Column(Unicode(2048))
-    
-    
+superuser.add_view(ModelView(SuperUser, db.session))
+superuser.add_view(ModelView(User, db.session))
+superuser.add_view(TestAdmin(Content, db.session))   

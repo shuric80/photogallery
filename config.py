@@ -10,7 +10,7 @@ class BaseConfig(object):
     CSRF_ENABLED = True
     BOWER_COMPONENTS_ROOT = '../bower_components'
     SQLALCHEMY_TRACK_MODIFICATIONS = True
-
+    DEBUG_TB_INTERCEPT_REDIRECTS = False
     # email server
     MAIL_SERVER = 'smtp.googlemail.com'
     MAIL_PORT = 465
