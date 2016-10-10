@@ -1,5 +1,5 @@
 import os
-from flask import session, redirect, url_for
+from flask import session, request, redirect, url_for
 from wtforms import TextAreaField
 from wtforms.widgets import TextArea
 from flask.ext import login
@@ -7,6 +7,9 @@ from flask_admin.contrib.sqla import ModelView
 from flask_admin import AdminIndexView
 from flask_admin import helpers, expose
 from flask_login import current_user
+from form import LoginForm
+from app import logger
+
 
 
 class CKTextAreaWidget(TextArea):
@@ -22,10 +25,12 @@ class CKTextAreaField(TextAreaField):
     widget = CKTextAreaWidget()
 
     
-class ContentAdmin(ModelView):
+class ContentView(ModelView):
+
+    def is_accessible(self):
+       return login.current_user.is_authenticated
 
     def inaccessible_callback(self, name, **kwargs):
-        # redirect to login page if user doesn't have access
         return redirect(url_for('login', next=request.url))
 
     form_overrides = dict(text=CKTextAreaField)
@@ -33,47 +38,50 @@ class ContentAdmin(ModelView):
     create_template = 'edit.html'
     edit_template = 'edit.html'
 
+class MailView(ContentView):
+    pass
 
 class AdminView(ModelView):
-    excluded_list_column = ('password',)
-    execlude_list = ['password']
-
-
-def logged_in():
-    return session.get('logged')
-
-
-class CustomAdminIndexView(AdminIndexView):
 
     def is_accessible(self):
-        #return current_user.is_authenticated
-        return logged_in()
+        return login.current_user.is_authenticated
+
+    excluded_list_column = ('_password_hash',)
+
+class UserView(ModelView):
+    def is_accessible(self):
+        return login.current_user.is_authenticated
+
+    
+class CustomAdminIndexView(AdminIndexView):
 
     @expose('/')
     def index(self):
-        if not logged_in():
+        if not login.current_user.is_authenticated:
             return redirect(url_for('.login_view'))
 
         return super(CustomAdminIndexView, self).index()
 
+    
     @expose('/login/', methods=('GET','POST'))
     def login_view(self):
+        logger.info('LOGIN')
         form = LoginForm(request.form)
+        logger.debug(form)
         if helpers.validate_form_on_submit(form):
             user = form.get_user()
             login.login_user(user)
-            session.update({'logged':True})
-            session.modified = True
 
-        if logged_in():
+        if login.current_user.is_authenticated:
             return redirect(url_for('.index'))
-
-        link = '<p>Don\'t have account?<a href="'+url_for('.register_view')+'">Click here to register</a></p>'
+        
+        link = '<p>Don\'t have an account? <a href="">Click here to register.</a></p>'
         self._template_args['form'] = form
         self._template_args['link'] = link
         return super(CustomAdminIndexView, self).index()
 
     @expose('logout')
     def logout_view(self):
-        session.pop('logged',None)
+        login.logout_user()
         return redirect(url_for('.index'))
+

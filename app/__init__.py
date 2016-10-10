@@ -14,8 +14,9 @@ from flask_bcrypt import Bcrypt
 from flask_admin import Admin
 from flaskext.markdown import Markdown
 from flask_debugtoolbar import DebugToolbarExtension
-
+import flask_login as login
 from extlog import logger
+
 
 app = Flask(__name__, template_folder='templates')
 
@@ -33,11 +34,34 @@ bcrypt = Bcrypt(app)
 
 
 debug_toolbar = DebugToolbarExtension(app) if app.config['DEBUG'] else None
- 
+
+
+# Initialize flask-login
+def init_login():
+    login_manager = login.LoginManager()
+    login_manager.init_app(app)
+
+    # Create user loader function
+    @login_manager.user_loader
+    def load_user(user_id):
+        return db.session.query(SuperUser).get(user_id)
+
+init_login()
+
 from app.gallery.admin import CustomAdminIndexView
+
 admin = Admin( app, name='event', \
-               template_mode='bootstrap3', \
+               base_template = 'master.html', \
                index_view=CustomAdminIndexView())
+
+from app.gallery.admin  import *
+from app.gallery.models import *
+
+admin.add_view(AdminView(SuperUser, db.session))
+admin.add_view(UserView(User, db.session))
+admin.add_view(ContentView(Content, db.session))   
+admin.add_view(MailView(Mail, db.session))
+
 
 """
     GENERATE SECRET KEY

@@ -7,7 +7,6 @@ from sqlalchemy.ext.hybrid import hybrid_property
 from flask_admin.contrib.sqla import ModelView
 
 from app import db
-from app import admin as superuser
 #from admin import ContentAdmin,MailAdmin
 
 class MixinModel:
@@ -87,8 +86,3 @@ class Mail(db.Model):
     
 
 
-    
-superuser.add_view(ModelView(SuperUser, db.session))
-superuser.add_view(ModelView(User, db.session))
-#superuser.add_view(ContentAdmin(Content, db.session))   
-#superuser.add_view(MailAdmin(Mail, db.session))
