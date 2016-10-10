@@ -8,8 +8,8 @@ $(function(){
             data: data,
             success: function(e){
                 bootbox.alert({
-                    title:'Registration',
-                    message: '<h4>Thank you! Wait confirm email</h4>',
+                    title:'<h5 style="color:green">Registration</h5',
+                    message: '<h5>Confirm mail sent your address.</h5></h5>Thank you.</h5>',
                     size:'small',
                     callback: function(){
                         $("#form_registration").find("input, textarea").val("");
@@ -18,7 +18,7 @@ $(function(){
             },
             error: function(e,f){
                 bootbox.alert({
-                    title:'Error!',
+                    title:'<h5 style="color:red">Error</h5>',
                     message:'<h4>You are not registration</h4>',
                     size:'small'
                 });

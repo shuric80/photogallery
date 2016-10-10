@@ -8,7 +8,7 @@ from flask_admin.contrib.sqla import ModelView
 
 from app import db
 from app import admin as superuser
-from admin import TestAdmin
+#from admin import ContentAdmin,MailAdmin
 
 class MixinModel:
     def save(self):
@@ -79,6 +79,16 @@ class Content(db.Model, MixinModel):
     tstamp = Column(DateTime, default = datetime.utcnow)
 
 
+class Mail(db.Model):
+    __tablename__ ='email'
+    id = Column(Integer, primary_key=True)
+    subject = Column(Unicode(1024))
+    text = Column(Text(5000))
+    
+
+
+    
 superuser.add_view(ModelView(SuperUser, db.session))
 superuser.add_view(ModelView(User, db.session))
-superuser.add_view(TestAdmin(Content, db.session))   
+#superuser.add_view(ContentAdmin(Content, db.session))   
+#superuser.add_view(MailAdmin(Mail, db.session))
