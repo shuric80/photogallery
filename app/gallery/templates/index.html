@@ -31,7 +31,7 @@
   
   <body>
     {% include 'header.html' %}
-    <{% include 'content.html' %}>
+    {% include 'content.html' %}
       
       <script src="{{ url_for('bower.static',filename='jquery/dist/jquery.min.js') }}"></script>
       <script src="{{ url_for('bower.static', filename='fullpage.js/dist/jquery.fullpage.min.js') }}"></script>

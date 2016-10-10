@@ -58,10 +58,11 @@ def markdown_to_html(md_txt):
 
 @mod.route('/', methods=['GET'])
 def index():
+   
     content = Content().query.first()
-        
+   
     return render_template('index.html',content=content )
-    
+
 
 @mod.route('/registration', methods=['POST'])
 def register():

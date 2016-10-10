@@ -116,9 +116,9 @@ manager.add_command('db', MigrateCommand)
 manager.add_command('show-urls',ShowUrls)
 manager.add_command('clean',Clean)
 
-from app.gallery.views import *
+#from app.gallery.views import *
 
-#from app.gallery.views import mod as event
-#app.register_blueprint(event)
+from app.gallery.views import mod as event
+app.register_blueprint(event)
 
 from app.gallery.models import SuperUser

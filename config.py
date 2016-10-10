@@ -1,6 +1,7 @@
 # coding: utf-8
 import os
 
+
 class BaseConfig(object):
     DEBUG = False
     SECRET_KEY = "adqacfsae4adasae23"
@@ -35,4 +36,4 @@ class DebugConfig(BaseConfig):
     DEBUG = True
     DEBUG_TB_PROFILER_ENABLED = True
     DEBUG_TB_INTERCEPT_REDIRECTS = False
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///test.db'
+

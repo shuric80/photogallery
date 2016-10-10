@@ -1,3 +1,5 @@
+@width:100%;
+
 div.register_form {
     /* === Remove input autofocus webkit === */
     *:focus {outline: none;}
@@ -9,7 +11,7 @@ div.register_form {
 
     /* === List Styles === */
     .contact_form ul {
-        width:750px;
+        width:@width;
         list-style-type:none;
 	    list-style-position:outside;
 	    margin:0px;
@@ -38,7 +40,7 @@ div.register_form {
 
     /* === Form Elements === */
     .contact_form label {
-	    width:150px;
+	    width:@width/5;
 	    margin-top: 3px;
 	    display:inline-block;
 	    float:left;
@@ -51,7 +53,7 @@ div.register_form {
     }
     
 
-    .contact_form textarea {padding:8px; width:300px;}
+    .contact_form textarea {padding:8px; width:@width;}
     .contact_form button {margin-left:156px;}
 
 	/* form element visual styles */

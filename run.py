@@ -15,6 +15,7 @@ def create_admin():
     admin.password = 'admin'
     admin.save()
 
+
 @manager.command
 def clear():
     subprocess.call('"find *.pyc"')
