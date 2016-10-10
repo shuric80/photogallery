@@ -1,29 +1,52 @@
 #-*- coding:utf-8 -*-
+
+from threading import Thread
 import  markdown 
 
-from flask import render_template, abort, \
-    request, flash, \
-    redirect, Response, \
+from flask import render_template,\
+    request,  Response, \
     jsonify, Blueprint
 
-from jinja2 import TemplateNotFound
+from app import logger, mail, app
+from models import User, SuperUser, Content
+from flask_mail import Message
+from flask import jsonify
 
-#from . import gallery
-from app import logger
-from  models import *
 
 logger.info('Load views')
 
-mod = Blueprint('event',__name__, url_prefix='/event') 
+mod = Blueprint('event',__name__, url_prefix='/event', template_folder='templates') 
 
-class Content():
-    def __init__(self):
-       self.title = u'title'
-       self.head = u'head'
-       self.txt = u'text'
-       self.photo = 'http://placehold.it/450x300'
+def _send_async_email(msg):
+    with app.app_context():
+        mail.send(msg)
+        logger.debug('mail send ok')
+
+        
+def _send_email_to_admin(user):
+    admin = SuperUser.query.first()
+    subject = 'new user'
+    email_sender = app.config.get('ADMINS')[0]
+    
+    msg = Message(subject, sender=email_sender, recipients=[admin.email])
+    msg.html = render_template('admin_mail.html', user=user)
+    
+    thr =Thread(target=_send_async_email, args=[msg])
+    thr.start()
 
     
+        
+def _send_mail_to_user(user):
+    subject = 'Registration'
+    email_sender = app.config.get('ADMINS')[0]
+    
+    msg = Message(subject, sender=email_sender, recipients=[user.email])
+    msg.html = render_template('mail.html', user=user)
+    
+    thr =Thread(target=_send_async_email, args=[msg])
+    thr.start()
+
+
 def markdown_to_html(md_txt):
     """Convert markdowm to html
 
@@ -35,23 +58,38 @@ def markdown_to_html(md_txt):
 
 @mod.route('/', methods=['GET'])
 def index():
-    content =  Content()
-    return render_template('index.html',content=content)
+    content = Content().query.first()
+        
+    return render_template('index.html',content=content )
     
 
 @mod.route('/registration', methods=['POST'])
 def register():
-    logger.debug('registration')
-    user = User()
     if request.method == 'POST':
-        logger.info('Registration POST: %s%s' %(request.form['email'],request.form['name']))
+        logger.info('Registration POST: %s%s%s' %(request.form['email'],request.form['name'], request.form['tel']))
         user = User()
-        user.name = request.form['name']
-        user.email = request.form['email']
-        user.tel = request.form['tel']
-        user.msg = request.form['msg']
+        user.name = request.form.get('name',None)
+        user.email = request.form.get('email',None)
+        user.tel = request.form.get('tel',None)
+        user.msg = request.form.get('message',None)
 
+        if not user.is_valid:
+            logger.error('No valid form. Request:%s' % request)
+            return jsonify('Error:')
+
+        try:
+           user.save()
+        except:
+            logger.error('Don\'t save in base. Request:%s' %request)
+            return jsonify('Error')
         
+        logger.info('Register:Done!')
+        
+        _send_mail_to_user(user)
+        _send_email_to_admin(user)
+           
+        return jsonify('ok')
 
-    return jsonify('ok')
+    else:
+        return jsonify('Error:')
 
