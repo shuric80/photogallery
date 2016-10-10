@@ -21,7 +21,7 @@ db = SQLAlchemy(app)
 
 def install_secret_key(app, filename="secret_key"):
     filename = os.path.join(app.instance_path, filename)
-
+    print filename
     try:
         app.config['SECRET_KEY'] = open(filename,'r').read()
     except IOError:
@@ -40,7 +40,9 @@ def not_found(error):
     return render_to_template('404.html'), 404
 
 
-from app.gallery.views import mod as event
-app.register_blueprint(event)
+from app.gallery.views import *
+
+#from app.gallery.views import mod as event
+#app.register_blueprint(event)
 
         

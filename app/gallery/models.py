@@ -3,7 +3,9 @@
 from datetime import datetime
 from sqlalchemy import Boolean, Column, Integer,Unicode, Date
 from app import db
+from app import logger
 
+logger.info('Load models')
 
 class User(db.Model):
     __tablename__ = 'user'

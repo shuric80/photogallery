@@ -10,7 +10,7 @@ from jinja2 import TemplateNotFound
 
 #from . import gallery
 from app import logger
-from models import User
+from  models import *
 
 logger.info('Load views')
 
@@ -42,6 +42,7 @@ def index():
 @mod.route('/registration', methods=['POST'])
 def register():
     logger.debug('registration')
+    user = User()
     if request.method == 'POST':
         logger.info('Registration POST: %s%s' %(request.form['email'],request.form['name']))
         user = User()
