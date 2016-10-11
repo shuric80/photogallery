@@ -1,4 +1,4 @@
-#-*- coding:utf-8 -*-
+# -*- coding:utf-8 -*-
 
 import os
 import sys
@@ -54,13 +54,13 @@ admin = Admin( app, name='event', \
                base_template = 'master.html', \
                index_view=CustomAdminIndexView())
 
-from app.gallery.admin  import *
-from app.gallery.models import *
+from app.gallery import admin
+from app.gallery import models 
 
-admin.add_view(AdminView(SuperUser, db.session))
-admin.add_view(UserView(User, db.session))
-admin.add_view(ContentView(Content, db.session))   
-admin.add_view(MailView(Mail, db.session))
+admin.add_view(admin.AdminView(models.SuperUser, db.session))
+admin.add_view(admin.UserView(models.User, db.session))
+admin.add_view(admin.ContentView(models.Content, db.session))   
+admin.add_view(admin.MailView(models.Mail, db.session))
 
 
 """

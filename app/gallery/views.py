@@ -1,15 +1,11 @@
-#-*- coding:utf-8 -*-
-
-from threading import Thread
-#import  markdown 
+# -*- coding:utf-8 -*-
 
 from flask import render_template,\
-    request,  Response, \
-    jsonify, Blueprint
+    request, jsonify, Blueprint
 
-from app import logger, app
+from app import logger
 from send_mail import send_email
-from models import User, SuperUser, Content
+from models import User, Content
 from flask import jsonify
 
 
@@ -24,6 +20,7 @@ def markdown_to_html(md_txt):
                    .replace('<table>','<table class="table table-border table-condensed">')
     return html
    """
+
 
 @mod.route('/', methods=['GET'])
 def index():

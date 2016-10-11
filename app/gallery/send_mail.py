@@ -17,23 +17,22 @@ def _send_email_to_user(user):
     mail = Mail.query.first()
     subject = mail.subject
     body = mail.text
-    
+
     email_sender = app.config.get('ADMINS')[0]
-    
     msg = Message(subject, sender=email_sender, recipients=[user.email])
     msg.html = render_template(body, user=user)
     thr = Thread(target=_send_async_email, args=[msg])
     thr.start()
-    
-        
+
+
 def _send_email_to_admin(user):
     admin = SuperUser.query.first()
     subject = 'Registration'
     email_sender = app.config.get('ADMINS')[0]    
     msg = Message(subject, sender=email_sender, recipients=[admin.email])
     msg.html = render_template('mail.html', user=user)
-    
-    thr =Thread(target=_send_async_email, args=[msg])
+
+    thr = Thread(target=_send_async_email, args=[msg])
     thr.start()
 
 

@@ -1,15 +1,14 @@
-import os
-from flask import session, request, redirect, url_for
+# -*- coding:utf-8 -*-
+
+from flask import request, redirect, url_for
 from wtforms import TextAreaField
 from wtforms.widgets import TextArea
-from flask.ext import login
+import flask_login as login
 from flask_admin.contrib.sqla import ModelView
-from flask_admin import AdminIndexView
-from flask_admin import helpers, expose
-from flask_login import current_user
+from flask_admin import AdminIndexView, helpers, expose
+
 from form import LoginForm
 from app import logger
-
 
 
 class CKTextAreaWidget(TextArea):
@@ -38,6 +37,7 @@ class ContentView(ModelView):
     create_template = 'edit.html'
     edit_template = 'edit.html'
 
+
 class MailView(ContentView):
     pass
 
@@ -48,6 +48,7 @@ class AdminView(ModelView):
         return login.current_user.is_authenticated
 
     column_exclude_list = ('_password_hash')
+
 
 class UserView(ModelView):
     def is_accessible(self):
@@ -76,7 +77,7 @@ class CustomAdminIndexView(AdminIndexView):
         if login.current_user.is_authenticated:
             return redirect(url_for('.index'))
         
-        link = '<p>Don\'t have an account? <a href="">Click here to register.</a></p>'
+        link = '<p>Input login and pasword for admin.</p>'
         self._template_args['form'] = form
         self._template_args['link'] = link
         return super(CustomAdminIndexView, self).index()
