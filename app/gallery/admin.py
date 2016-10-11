@@ -41,12 +41,13 @@ class ContentView(ModelView):
 class MailView(ContentView):
     pass
 
+
 class AdminView(ModelView):
 
     def is_accessible(self):
         return login.current_user.is_authenticated
 
-    excluded_list_column = ('_password_hash',)
+    column_exclude_list = ('_password_hash')
 
 class UserView(ModelView):
     def is_accessible(self):
