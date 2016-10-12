@@ -3,17 +3,19 @@
 <div class="content-section-a">
     <div class="container">
         <div class="row">
-            <div class="col-lg-5 col-sm-6">
+            <div class="col-lg-8 col-sm-6 col-lg-offset-2">
                 <hr class="section-heading-spacer">
                 <div class="clearfix"></div>
                 {%if content %}
                 <h2 class="section-heading">{{ content.head }}<br>{{ content.title }}</h2>
-                <p class="lead">{{ content.text }}</p>
+                <p class="lead">{{ content.text|markdown }}</p>
                 {% endif %}
             </div>
+           {#
             <div class="col-lg-5 col-lg-offset-2 col-sm-6">
                 <img class="img-responsive" src="{{ content.photo }}" alt="">
             </div>
+            #}
        </div>
     </div>
     <!-- /.container -->
@@ -23,15 +25,17 @@
 <div class="content-section-a">
     <div class="container">
         <div class="row">
-            <div class="col-lg-5 col-sm-6">
+             <div class="col-lg-8 col-lg-offset-2 col-sm-6">
                 <hr class="section-heading-spacer">
                 <div class="clearfix"></div>
                 <h2 class="section-heading">Registration:<br>this form</h2>
                 <p class="lead">{% include 'form.html' %}</p>
             </div>
+            {#
             <div class="col-lg-5 col-lg-offset-2 col-sm-6">
                 <img class="img-responsive" src="{{ logo }}" alt="">
             </div>
+            #}
         </div>
     </div>
     <!-- /.container -->

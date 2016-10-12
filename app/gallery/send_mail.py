@@ -17,10 +17,9 @@ def _send_email_to_user(user):
     mail = Mail.query.first()
     subject = mail.subject
     body = mail.text
-
     email_sender = app.config.get('ADMINS')[0]
     msg = Message(subject, sender=email_sender, recipients=[user.email])
-    msg.html = render_template(body, user=user)
+    msg.html = body
     thr = Thread(target=_send_async_email, args=[msg])
     thr.start()
 
