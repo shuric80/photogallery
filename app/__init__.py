@@ -54,13 +54,16 @@ admin = Admin( app, name='event', \
                base_template = 'master.html', \
                index_view=CustomAdminIndexView())
 
-from app.gallery import admin
-from app.gallery import models 
+from app.gallery.admin import AdminView, UserView, \
+    ContentView, MailView
 
-admin.add_view(admin.AdminView(models.SuperUser, db.session))
-admin.add_view(admin.UserView(models.User, db.session))
-admin.add_view(admin.ContentView(models.Content, db.session))   
-admin.add_view(admin.MailView(models.Mail, db.session))
+from app.gallery.models import SuperUser, User, \
+    Content, Mail
+
+admin.add_view(AdminView(SuperUser, db.session))
+admin.add_view(UserView(User, db.session))
+admin.add_view(ContentView(Content, db.session))   
+admin.add_view(MailView(Mail, db.session))
 
 
 """

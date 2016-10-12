@@ -3,7 +3,7 @@
 from app import bcrypt
 from datetime import datetime
 from sqlalchemy import Column, Integer, Unicode, Text, DateTime
-from sqlalchem.ext.hybrid import hybrid_property
+from sqlalchemy.ext.hybrid import hybrid_property
 
 
 from app import db
