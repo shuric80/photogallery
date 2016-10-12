@@ -91,6 +91,12 @@ if not app.config['DEBUG']:
 def not_found(error):
     return render_template('404.html'), 404
 
+
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+
 migrate = Migrate(app, db)
 manager = Manager(app)
 
