@@ -4,15 +4,15 @@
     <title>Angular</title>
   </head>
   <body>
-    <div ng-view>
-    </div>
-    
-    <script src="{{ url_for('bower.static', filename='angular/angular.js') }}"></script>
-    <script src="{{ url_for('bower.static', filename='angular-route/angular-route.js') }}"></script>
-
+    <script src="{{ url_for('bower.static', filename='angular/angular.min.js') }}"></script>
+    <script src="{{ url_for('bower.static', filename='angular-route/angular-route.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/app.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/app-route.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/app.config.js') }}"></script> 
+
+    <script src="{{ url_for('static', filename='js/app-route.js') }}"></script> 
     <a href="#/test">test</a>
 
+    <div ng-view>
+      </div>
   </body>
 </html>

@@ -17,6 +17,8 @@
   "dependencies": {
     "bootstrap": "^3.3.7",
     "fullpage.js": "^2.8.6",
-    "bootbox.js": "^4.4.0"
+    "bootbox.js": "^4.4.0",
+    "angular": "angular2#^1.5.8",
+    "angular-route": "^1.5.8"
   }
 }
