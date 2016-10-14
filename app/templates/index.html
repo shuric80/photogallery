@@ -30,26 +30,25 @@
   </head>
   
   <body>
-    {#    {% include 'header.html' %}
-    {% include 'content.html' %}
-    #}
-    <a href="#/test">test</a>
-
+    {% include 'header.html' %}
+    <a ui-sref="test" ui-sref-active="active">test</a>
+    {#{% include 'content.html' %} #}
     
-    {#  <script src="{{ url_for('bower.static',filename='jquery/dist/jquery.min.js') }}"></script>
-    <script src="{{ url_for('bower.static', filename='fullpage.js/dist/jquery.fullpage.min.js') }}"></script>
+    <script src="{{ url_for('bower.static',filename='jquery/dist/jquery.min.js') }}"></script>
+    {#  <script src="{{ url_for('bower.static', filename='fullpage.js/dist/jquery.fullpage.min.js') }}"></script>
+    #}
     <script src="{{ url_for('bower.static',filename='bootstrap/dist/js/bootstrap.min.js') }}"></script> 
-    #}
-    
     <script src="{{ url_for('bower.static', filename='angular/angular.min.js') }}"></script>
     <script src="{{ url_for('bower.static', filename='angular-ui-router/release/angular-ui-router.min.js') }}"></script>
+    <script src="{{ url_for('bower.static', filename='angular-cookies/angular-cookies.min.js') }}"></script>
 
-    {#    <script src="{{ url_for('bower.static',filename='bootbox.js/bootbox.js') }}"></script>
-    #}
+    <script src="{{ url_for('bower.static',filename='bootbox.js/bootbox.js') }}"></script>
     {#  <script src="{{ url_for('static',filename='js/main.min.js') }}"></script>
     #}
+    <script src="{{ url_for('static',filename='js/app-controller.js') }}"></script> 
+    <script src="{{ url_for('static',filename='js/app-route.js') }}"></script> 
+
     <script src="{{ url_for('static',filename='js/app.js') }}"></script>
-    <script src="{{ url_for('static',filename='js/app-route.js') }}"></script>
     <div ui-view>
     </div>
 

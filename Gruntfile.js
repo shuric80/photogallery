@@ -28,7 +28,7 @@ module.exports = function(grunt) {
             options: {
                 reporter: require('jshint-stylish')
             },
-            all: ['Gruntfile.js','app/assets/js/*.js']
+            all: ['Gruntfile.js','app/static/js/*.js']
         },
         cssmin:{
             options: {
