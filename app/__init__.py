@@ -33,7 +33,7 @@ Bower(app)
 bcrypt = Bcrypt(app)
 
 
-debug_toolbar = DebugToolbarExtension(app) if app.config['DEBUG'] else None
+#debug_toolbar = DebugToolbarExtension(app) if app.config['DEBUG'] else None
 
 
 # Initialize flask-login
@@ -90,6 +90,10 @@ if not app.config['DEBUG']:
 @app.errorhandler(404)
 def not_found(error):
     return render_template('404.html'), 404
+
+@app.route('/')
+def index():
+    return render_template('index.html')
 
 migrate = Migrate(app, db)
 manager = Manager(app)

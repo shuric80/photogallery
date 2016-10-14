@@ -1,4 +1,5 @@
 *.pyc
+!*
 app/static/js/
 app/static/css/
 env/
@@ -6,4 +7,4 @@ activate
 bower_components/
 node_modules/
 app.db
-migraton
+migrations/
