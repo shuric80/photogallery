@@ -8,17 +8,16 @@
         $interpolateProvider.startSymbol('{[');
         $interpolateProvider.endSymbol(']}');
 
-        $urlRouterProvider.otherwise('/');
+        //$urlRouterProvider.otherwise('/');
         $stateProvider
-            .state('test', {
-                url:'/test',
+            .state('event', {
+                url:'/event/{id}',
                 views:{
                     '':{
-                        templateUrl:'static/js/test.html',
-                        controller:'IndexController'
-                    }
-                }
-            }
-                  )
+                        templateUrl:'static/templates/content.html',
+                        controller:'EventController',
+                        controllerAs: 'vm'
+                    }}
+            })
     }
 })()

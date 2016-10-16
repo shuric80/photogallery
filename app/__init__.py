@@ -2,7 +2,8 @@
 
 import os
 import sys
-from flask import Flask, render_template
+from flask import Flask, render_template, \
+    jsonify, request
 
 from flask_bower import Bower
 from flask_sqlalchemy import SQLAlchemy
@@ -94,6 +95,12 @@ def not_found(error):
 @app.route('/')
 def index():
     return render_template('index.html')
+
+
+@app.route('/api/event/<id>', methods=['GET','POST'])
+def event(id):
+    logger.debug(id)
+    return jsonify(id)
 
 migrate = Migrate(app, db)
 manager = Manager(app)

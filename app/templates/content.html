@@ -11,12 +11,12 @@
                 <p class="lead">{{ content.text|markdown }}</p>
                 {% endif %}
             </div>
-           {#
+            {#
             <div class="col-lg-5 col-lg-offset-2 col-sm-6">
                 <img class="img-responsive" src="{{ content.photo }}" alt="">
             </div>
             #}
-       </div>
+        </div>
     </div>
     <!-- /.container -->
 </div>
@@ -25,11 +25,12 @@
 <div class="content-section-a">
     <div class="container">
         <div class="row">
-             <div class="col-lg-8 col-lg-offset-2 col-sm-6">
+            <div class="col-lg-8 col-lg-offset-2 col-sm-6">
                 <hr class="section-heading-spacer">
                 <div class="clearfix"></div>
                 <h2 class="section-heading">Registration:<br>this form</h2>
-                <p class="lead">{% include 'form.html' %}</p>
+                <p class="lead">
+                    <div ng-include="form.html"></div></p>
             </div>
             {#
             <div class="col-lg-5 col-lg-offset-2 col-sm-6">
