@@ -19,6 +19,8 @@
     "fullpage.js": "^2.8.6",
     "bootbox.js": "^4.4.0",
     "angular": "angularjs#^1.5.8",
-    "angular-route": "^1.5.8"
+    "angular-route": "^1.5.8",
+    "angular-ui-router": "^0.3.1",
+    "angular-cookies": "^1.5.8"
   }
 }

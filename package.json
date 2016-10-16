@@ -11,7 +11,8 @@
     "grunt-contrib-jshint": "^1.0.0",
     "grunt-contrib-less": "latest",
     "grunt-contrib-uglify": "latest",
-    "grunt-contrib-watch": "latest",
+    "grunt-contrib-watch": "^1.0.0",
+    "gulp": "^3.9.1",
     "jshint-stylish": "latest",
     "main-bower-files": "^2.13.1"
   },
