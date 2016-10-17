@@ -21,11 +21,18 @@
     'use strict';
     angular
         .module('app.controller',[])
-        .controller('IndexController',IndexController);
+        .controller('IndexController', IndexController);
 
+    
     IndexController.$inject = ['Event'];
 
     function IndexController(Event){
-     console.log('main');   
+        console.log('index');
+        var vm = this;
+        var events = Event.all(function(){
+            
+});
+        
+        vm.posts = ["ping","pong"];
     }
 })();

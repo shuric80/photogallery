@@ -48,7 +48,7 @@ module.exports = function(grunt) {
         watch :{
             all:{
                 files:['Gruntfile.js', 'client/js/*.js','client/stylesheet/*.less','client/templates/*.html'],
-                tasks:['clean','jshint', 'concat','uglify', 'less','cssmin'],
+                tasks:['clean','jshint', 'concat','uglify', 'less','cssmin' ,'copy'],
                 options:{
                     atBegin:true
                 }
