@@ -98,9 +98,15 @@ def index():
     debug = app.config['DEBUG']
     return render_template('index.html', debug=debug)
 
+@app.route('/api/events', methods=['GET'])
+def events():
+    logger.debug('events')
+    return jsonify('all')
 
-@app.route('/api/event/<id>', methods=['GET','POST'])
+    
+@app.route('/api/events/<id>', methods=['GET','POST'])
 def event(id):
+    logger.debug('api event')
     logger.debug(id)
     return jsonify(id)
 

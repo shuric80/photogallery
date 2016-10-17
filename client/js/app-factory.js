@@ -9,17 +9,6 @@
 
     function Event($resource){
 
-        function get(id){
-            return $resource('/api/event/:id');
-        }
-
-        function all(){
-            return $resource('/api/event.all/');
-        }
-        
-        return {
-            all:all,
-            get:get
-        };
+        return $resource('/api/events/:id');
     }
 })();

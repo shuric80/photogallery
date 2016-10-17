@@ -7,17 +7,16 @@
     function config ($stateProvider, $urlRouterProvider, $interpolateProvider){
         $interpolateProvider.startSymbol('{[');
         $interpolateProvider.endSymbol(']}');
-
-        //$urlRouterProvider.otherwise('/');
+        $urlRouterProvider.otherwise('/');
         $stateProvider
             .state('main',{
-                url:'/main',
+                url:'/',
                 views:{
                     '':{
-                    templateUrl:'static/templates/main.html',
-                    controller:'IndexController',
-                    controllerAs:'vm'
-                }}
+                        templateUrl:'static/templates/main.html',
+                        controller:'IndexController',
+                        controllerAs:'vm'
+                    }}
             })
             .state('event', {
                 url:'/event/{id}',

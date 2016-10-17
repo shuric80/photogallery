@@ -29,8 +29,8 @@
     function IndexController(Event){
         console.log('index');
         var vm = this;
-        var events = Event.all(function(){
-            
+        var events = Event.query(function(){
+            console.log(events);
 });
         
         vm.posts = ["ping","pong"];
