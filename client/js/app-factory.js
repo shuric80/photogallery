@@ -8,7 +8,6 @@
     Event.$inject = ['$resource'];
 
     function Event($resource){
-
         return $resource('/api/event/:id');
     }
 })();

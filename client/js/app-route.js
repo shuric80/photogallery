@@ -10,6 +10,15 @@
 
         //$urlRouterProvider.otherwise('/');
         $stateProvider
+            .state('main',{
+                url:'/main',
+                views:{
+                    '':{
+                    templateUrl:'static/templates/main.html',
+                    controller:'IndexController',
+                    controllerAs:'vm'
+                }}
+            })
             .state('event', {
                 url:'/event/{id}',
                 views:{
@@ -18,6 +27,6 @@
                         controller:'EventController',
                         controllerAs: 'vm'
                     }}
-            })
+            });
     }
-})()
+})();

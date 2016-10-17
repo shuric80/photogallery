@@ -5,6 +5,7 @@
    	'app.controller',
 		'app.route',
         'app.factory',
+        'app.directive'
 	]);
 
 	angular.module('myApp').run(run);

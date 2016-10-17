@@ -92,9 +92,11 @@ if not app.config['DEBUG']:
 def not_found(error):
     return render_template('404.html'), 404
 
+
 @app.route('/')
 def index():
-    return render_template('index.html')
+    debug = app.config['DEBUG']
+    return render_template('index.html', debug=debug)
 
 
 @app.route('/api/event/<id>', methods=['GET','POST'])

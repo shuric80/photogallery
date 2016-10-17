@@ -17,40 +17,79 @@ module.exports = function(grunt) {
             options: {
                 banner: '/*\n <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> \n*/\n'
             },
-            build: {
+            all: {
                 files:{
-                    'app/static/js/main.min.js':'app/assets/js/*.js'
+                    'app/static/js/app.min.js':'.tmp/app.js'
+                },
+                options:{
+                    report:'min',
+                    mangle:false
                 }
             }
         },
-
         jshint: {
             options: {
                 reporter: require('jshint-stylish')
             },
-            all: ['Gruntfile.js','app/static/js/*.js']
+            all: ['Gruntfile.js','client/js/*.js']
         },
         cssmin:{
             options: {
                 shorthandCompacting: false,
                 roudingPrecision:-1
             },
-            target:{
+            all:{
                 files:
                 {
                     'app/static/css/main.min.css': 'app/static/css/main.css'
                 }
             }
         },
+        watch :{
+            all:{
+                files:['Gruntfile.js', 'client/js/*.js','client/stylesheet/*.less','client/templates/*.html'],
+                tasks:['clean','jshint', 'concat','uglify', 'less','cssmin'],
+                options:{
+                    atBegin:true
+                }
+            },
+        },
+        copy:{
+            main:{
+                expand:true,
+                cwd:'client/templates',
+                src:'*.html',
+                dest:'app/static/templates/'
+            }
+        },
+        concat: {
+            dist: {
+                src: ['client/js/*.js'],
+                dest: '.tmp/app.js',
+            }
+        },
+        browserSync:{
+            dev:{
+                bsFiles:{
+                    src:[
+                        'app/static/css/main.min.css',
+                        'app/templates/']
+                },
+                options:{
+                    baseDir:'app/templates'
+                }
+            }
+        },
+        clean: [".tmp/", "app/static/templates/"],
         less:
         {
-            development: {
+            all: {
                 options: {
                     compress: true,
                     report:true
                 },
                 files: {
-                    'app/static/css/main.css':'app/assets/stylesheet/*.less'
+                    'app/static/css/main.css':'client/stylesheet/*.less'
                     
                 }
             }
@@ -68,7 +107,10 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('main-bower-files');
-
-    grunt.registerTask('default', ['jshint','uglify','less','cssmin']);
+    grunt.loadNpmTasks('grunt-contrib-copy');
+     grunt.loadNpmTasks('grunt-contrib-clean');
+    grunt.loadNpmTasks("grunt-contrib-concat");
+    grunt.loadNpmTasks('grunt-browser-sync');
+    grunt.registerTask('default', ['jshint','concat','copy','uglify','less','cssmin']);
 
 };

@@ -6,12 +6,16 @@
   "dependencies": {},
   "devDependencies": {
     "grunt": "^1.0.1",
+    "grunt-browser-sync": "^2.2.0",
+    "grunt-contrib-clean": "^1.0.0",
     "grunt-contrib-concat": "^1.0.1",
+    "grunt-contrib-copy": "^1.0.0",
     "grunt-contrib-cssmin": "latest",
     "grunt-contrib-jshint": "^1.0.0",
     "grunt-contrib-less": "latest",
     "grunt-contrib-uglify": "latest",
     "grunt-contrib-watch": "^1.0.0",
+    "grunt-notify": "^0.4.5",
     "gulp": "^3.9.1",
     "jshint-stylish": "latest",
     "main-bower-files": "^2.13.1"
