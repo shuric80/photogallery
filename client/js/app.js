@@ -2,7 +2,8 @@
 	'use strict';
 	angular.module('myApp', [
         'ngResource',
-   	'app.controller',
+   	'app.event.controller',
+	    'app.index.controller',
 		'app.route',
         'app.factory',
         'app.directive'

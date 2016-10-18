@@ -1,18 +1,19 @@
 (function() {
     'use strict';
     angular
-        .module('app.controller',[])
+        .module('app.event.controller',[])
         .controller('EventController', EventController);
 
     EventController.$inject =['$stateParams','Event'];
 
-    function EventController($http, $stateParams, Event){
-        var pid = $stateParams.id;
+    function EventController($stateParams, Event){
         var vm = this;
-        var event =  Event.get({id:pid}, function(){
+        var id = $stateParams.id;
+        var event =  Event.get({id:id}, function(){
             vm.title = event.title;
             vm.text = event.text;
-            vm.hide_registration = event.hide_registration;});
+            
+        });
     }
 })();
 
@@ -20,19 +21,19 @@
 (function() {
     'use strict';
     angular
-        .module('app.controller',[])
+        .module('app.index.controller',[])
         .controller('IndexController', IndexController);
 
     
     IndexController.$inject = ['Event'];
 
     function IndexController(Event){
-        console.log('index');
         var vm = this;
-        var events = Event.all(function(){
-            
-});
+        var events = Event.query(function(){
+            //console.log(events);
+            vm.posts = events;
+        });
         
-        vm.posts = ["ping","pong"];
+        
     }
 })();

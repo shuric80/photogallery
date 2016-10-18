@@ -98,6 +98,29 @@ def index():
     debug = app.config['DEBUG']
     return render_template('index.html', debug=debug)
 
+class Post:
+    def __init__(self, n):
+        self.photo = 'http://placehold.it/300x200'
+        self.title = 'title:%s'%n
+        self.text = 'text'
+
+        
+@app.route('/api/event', methods=['GET'])
+def eventAll():
+
+    l = list()
+    for i in range(10):
+        obj = Post(i)
+        post = dict(
+            id = i,
+            title = obj.title,
+            photo = obj.photo,
+            text = obj.text
+         )
+        l.append(post)
+    
+    return jsonify(l)
+
 
 @app.route('/api/event/<id>', methods=['GET','POST'])
 def event(id):

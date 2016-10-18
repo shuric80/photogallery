@@ -8,10 +8,10 @@
         $interpolateProvider.startSymbol('{[');
         $interpolateProvider.endSymbol(']}');
 
-        //$urlRouterProvider.otherwise('/');
+        $urlRouterProvider.otherwise('/');
         $stateProvider
             .state('main',{
-                url:'/main',
+                url:'/',
                 views:{
                     '':{
                     templateUrl:'static/templates/main.html',
@@ -20,11 +20,11 @@
                 }}
             })
             .state('event', {
-                url:'/event/{id}',
+                url:'/event/:id',
                 views:{
                     '':{
                         templateUrl:'static/templates/content.html',
-                        controller:'EventController',
+                        controller: 'EventController',
                         controllerAs: 'vm'
                     }}
             });

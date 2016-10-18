@@ -8,18 +8,6 @@
     Event.$inject = ['$resource'];
 
     function Event($resource){
-
-        function get(id){
-            return $resource('/api/event/:id');
+            return $resource('/api/event/');
         }
-
-        function all(){
-            return $resource('/api/event.all/');
-        }
-        
-        return {
-            all:all,
-            get:get
-        };
-    }
 })();
