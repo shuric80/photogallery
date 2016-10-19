@@ -17,7 +17,7 @@
                 $scope.vm.odd = $scope.odd;
                 console.log($scope.vm.odd);
                 $scope.loadPostExt = function(){
-                    //   $location.path('/event/');
+                      $location.path('/event/'+$scope.vm.id);
                 };
             },
             templateUrl: 'static/templates/post.html',

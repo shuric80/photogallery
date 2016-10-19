@@ -8,12 +8,17 @@
 
     function EventController($stateParams, Event){
         var vm = this;
+        
         var id = $stateParams.id;
-        var event =  Event.get({id:id}, function(){
-            vm.title = event.title;
-            vm.text = event.text;
-            
-        });
+
+        function activate(){
+            var event =  Event.get({id:id}, function(){
+                vm.title = event.title;
+                vm.text = event.text;
+                
+            });}
+
+        activate();
     }
 })();
 
@@ -29,11 +34,43 @@
 
     function IndexController(Event){
         var vm = this;
-        var events = Event.query(function(){
-            //console.log(events);
-            vm.posts = events;
-        });
+
+        function activate(){
+            var events = Event.query(function(){
+                //console.log(events);
+                vm.posts = events;
+            });
+        }
+
+        activate();
         
-        
+    }
+})();
+
+
+(function(){
+    'use strict';
+    angular
+        .module('app.about.controller',[])
+        .controller('AboutController',AboutController);
+
+    AboutController.$inject =['$http'];
+
+    function AboutController($http){
+        var vm =this;
+
+        function activate(){
+            $http({
+                method:'GET',
+                url:'/api/about',
+            }).then(function successCallback(response){
+                vm.text = response.data;
+            }, function errorCallback(response){
+                vm.text = "error";
+}
+                   );
+        }
+
+        activate();
     }
 })();

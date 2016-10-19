@@ -6,7 +6,8 @@
 	    'app.index.controller',
 		'app.route',
         'app.factory',
-        'app.directive'
+        'app.directive',
+        'app.about.controller'
 	]);
 
 	angular.module('myApp').run(run);
