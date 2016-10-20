@@ -51,15 +51,19 @@ init_login()
 
 from app.gallery.admin import CustomAdminIndexView
 
+
 admin = Admin( app, name='event', \
                base_template = 'master.html', \
                index_view=CustomAdminIndexView())
 
+
 from app.gallery.admin import AdminView, UserView, \
     ContentView, MailView
 
+
 from app.gallery.models import SuperUser, User, \
     Content, Mail
+
 
 admin.add_view(AdminView(SuperUser, db.session))
 admin.add_view(UserView(User, db.session))

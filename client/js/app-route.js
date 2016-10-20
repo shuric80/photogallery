@@ -15,7 +15,7 @@
                 views:{
                     '':{
                         templateUrl:'static/templates/main.html',
-                        controller:'IndexController',
+                        controller:'MainController',
                         controllerAs:'vm'
                     }}
             })

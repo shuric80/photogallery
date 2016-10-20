@@ -15,8 +15,8 @@
             var event =  Event.get({id:id}, function(){
                 vm.title = event.title;
                 vm.text = event.text;
-                
-            });}
+            });
+        }
 
         activate();
     }
@@ -26,22 +26,23 @@
 (function() {
     'use strict';
     angular
-        .module('app.index.controller',[])
-        .controller('IndexController', IndexController);
-
+        .module('app.main.controller',[])
+        .controller('MainController', MainController);
     
-    IndexController.$inject = ['Event'];
+    MainController.$inject = ['$http'];
 
-    function IndexController(Event){
+    function MainController($http){
         var vm = this;
 
         function activate(){
-            var events = Event.query(function(){
-                //console.log(events);
-                vm.posts = events;
-            });
-        }
-
+            $http.get('/api/main')
+                .success(function(data, status,headers,config){
+                    vm = JSON.parse(data);
+                })
+                .error(function(data,status,headers,config){
+                    console.log('error'); 
+                });
+             }
         activate();
         
     }
@@ -59,18 +60,15 @@
     function AboutController($http){
         var vm =this;
 
-        function activate(){
-            $http({
-                method:'GET',
-                url:'/api/about',
-            }).then(function successCallback(response){
-                vm.text = response.data;
-            }, function errorCallback(response){
-                vm.text = "error";
-}
-                   );
-        }
-
+                function activate(){
+            $http.get('/api/about')
+                .success(function(data, status,headers,config){
+                    vm = JSON.parse(data);
+                })
+                .error(function(data,status,headers,config){
+                    console.log('error'); 
+                });
+             }
         activate();
     }
 })();
