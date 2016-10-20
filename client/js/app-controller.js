@@ -4,19 +4,19 @@
         .module('app.event.controller',[])
         .controller('EventController', EventController);
 
-    EventController.$inject =['$stateParams','Event'];
+    EventController.$inject =['$stateParams','eventSession'];
 
-    function EventController($stateParams, Event){
+    function EventController($stateParams, eventSession){
         var vm = this;
         
         var id = $stateParams.id;
 
         function activate(){
-            var event =  Event.get({id:id}, function(){
-                vm.title = event.title;
-                vm.text = event.text;
-            });
+            //            var event =  eventSession.get({id:id}, function(){
+            //              vm.title = event.title;
+            //            vm.text = event.text;
         }
+        
 
         activate();
     }
@@ -26,23 +26,18 @@
 (function() {
     'use strict';
     angular
-        .module('app.main.controller',[])
-        .controller('MainController', MainController);
+        .module('app.index.controller',[])
+        .controller('IndexController', IndexController);
     
-    MainController.$inject = ['$http'];
+    IndexController.$inject = ['factoryEvent'];
 
-    function MainController($http){
+    function IndexController(factoryEvent){
         var vm = this;
 
         function activate(){
-            $http.get('/api/main')
-                .success(function(data, status,headers,config){
-                    vm = JSON.parse(data);
-                })
-                .error(function(data,status,headers,config){
-                    console.log('error'); 
-                });
-             }
+            var data = factoryEvent.getIndexPage();
+            console.log(data);
+        }
         activate();
         
     }
@@ -60,15 +55,9 @@
     function AboutController($http){
         var vm =this;
 
-                function activate(){
-            $http.get('/api/about')
-                .success(function(data, status,headers,config){
-                    vm = JSON.parse(data);
-                })
-                .error(function(data,status,headers,config){
-                    console.log('error'); 
-                });
-             }
+        function activate(){
+
+        }
         activate();
     }
 })();

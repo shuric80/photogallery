@@ -2,17 +2,17 @@
     'use strict';
 
     angular
-        .module('app.factory',['ngResource'])
-        .factory('eventSession', eventSession);
+        .module('app.factory',[])
+        .factory('factoryEvent', factoryEvent);
 
-    eventSession.$inject = ['$http'];
+    factoryEvent.$inject = ['$http'];
 
-    function eventSession($http){
+    function factoryEvent($http){
 
         var factory = {};
-        factory.getMainPage = getMainPage;
-        factory.getAbout = getAbout;
-        factory.getEvents = getEvents;
+        factory.getIndexPage = getIndexPage;
+        factory.getAboutPage = getAboutPage;
+        factory.getEventsPage = getEventsPage;
         factory.getEvent = getEvent;
         factory.register = register;
 

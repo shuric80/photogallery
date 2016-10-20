@@ -125,6 +125,10 @@ def eventAll():
     
     return jsonify(l)
 
+@app.route('/api/index')
+def restindex():
+    return jsonify('ok')
+
 
 @app.route('/api/event/<id>', methods=['GET','POST'])
 def event(id):
