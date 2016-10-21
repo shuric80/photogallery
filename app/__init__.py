@@ -111,29 +111,21 @@ class Post:
         
 @app.route('/api/event', methods=['GET'])
 def eventAll():
-
-    l = list()
-    for i in range(10):
-        obj = Post(i)
-        post = dict(
-            id = i,
-            title = obj.title,
-            photo = obj.photo,
-            text = obj.text
-         )
-        l.append(post)
     
-    return jsonify(l)
+    return jsonify('all')
+
 
 @app.route('/api/index')
 def restindex():
-    return jsonify('ok')
+    
+    return jsonify(dict(a='b'))
 
 
 @app.route('/api/event/<id>', methods=['GET','POST'])
 def event(id):
     logger.debug(id)
     return jsonify(id)
+
 
 migrate = Migrate(app, db)
 manager = Manager(app)

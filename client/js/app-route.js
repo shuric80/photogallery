@@ -15,16 +15,15 @@
                 views:{
                     '':{
                         templateUrl:'static/templates/main.html',
-                        controller:'IndexController',
+                        controller:'IndexViewController',
                         controllerAs:'vm'
                     }}
-            })
-            .state('event', {
+            }).state('detailView', {
                 url:'/event/:id',
                 views:{
                     '':{
                         templateUrl:'static/templates/content.html',
-                        controller: 'EventController',
+                        controller: 'DetailViewController',
                         controllerAs: 'vm'
                     }}
             }).state('about',{
@@ -32,7 +31,15 @@
                 views:{
                     '':{
                         templateUrl:'static/templates/about.html',
-                        controller:'AboutController',
+                        controller:'AboutViewController',
+                        controllerAs:'vm'
+                    }}
+            }).state('listView',{
+                url:'/events',
+                views:{
+                    '':{
+                        templateUrl:'static/templates/events.html',
+                        controller:'ListViewController',
                         controllerAs:'vm'
                     }}
             });

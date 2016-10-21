@@ -1,13 +1,14 @@
 (function () {
 	'use strict';
 	angular.module('myApp', [
-        'ngResource',
-   	'app.event.controller',
+//        'ngResource',
+   	'app.detail.controller',
 	    'app.index.controller',
+        'app.about.controller',
+        'app.list.controller',
 		'app.route',
         'app.factory',
         'app.directive',
-        'app.about.controller'
 	]);
 
 	angular.module('myApp').run(run);

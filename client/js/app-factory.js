@@ -12,8 +12,8 @@
         var factory = {};
         factory.getIndexPage = getIndexPage;
         factory.getAboutPage = getAboutPage;
-        factory.getEventsPage = getEventsPage;
-        factory.getEvent = getEvent;
+        factory.getListPage = getListPage;
+        factory.getDetailPage = getDetailPage;
         factory.register = register;
 
         return factory;
@@ -24,11 +24,11 @@
         function getAboutPage(){
             return $http.get('/api/about').then(handleSuccess, handleError('Error about page'));    
         }
-        function getEventsPage(){
+        function getListPage(){
             return $http.get('/api/events').then(handleSuccess, handleError('Error events page'));    
         }
-        function getEvent(){
-            return $http.get('/api/event').then(handleSuccess, handleError('Error event page'));    
+        function getDetailPage(id){
+            return $http.get('/api/event/'+id).then(handleSuccess, handleError('Error event page'));    
         }
         function register(){
             return $http.post('/api/register').then(handleSuccess, handleError('Error register'));
@@ -37,7 +37,7 @@
         // private functions
         
         function handleSuccess(res) {
-            return res.data;
+            return JSON.parse(res.data);
         }
         
         function handleError(error) {

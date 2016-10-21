@@ -1,23 +1,46 @@
 (function() {
     'use strict';
     angular
-        .module('app.event.controller',[])
-        .controller('EventController', EventController);
+        .module('app.detail.controller',[])
+        .controller('DetailViewController', DetailViewController);
 
-    EventController.$inject =['$stateParams','eventSession'];
+    DetailViewController.$inject =['$stateParams','factoryEvent'];
 
-    function EventController($stateParams, eventSession){
+    function DetailViewController($stateParams, factoryEvent){
         var vm = this;
         
         var id = $stateParams.id;
 
         function activate(){
-            //            var event =  eventSession.get({id:id}, function(){
-            //              vm.title = event.title;
-            //            vm.text = event.text;
+            factoryEvent.getDetailPage(id)
+                .then(function(data){
+                    vm.data = data;
+                }, function(err){
+                    vm.err= err;
+                });
         }
-        
+        activate();
+    }
+})();
 
+
+(function() {
+    'use strict';
+    angular
+        .module('app.list.controller',[])
+        .controller('ListViewController',ListViewController);
+
+    ListViewController.$inject = ['factoryEvent'];
+
+    function ListViewController(factoryEvent){
+        function activate(){
+            factoryEvent.getListPage()
+                .then(function(data){
+                    vm.data = data;
+                }, function(err){
+                    vm.err= err;
+                });
+        }
         activate();
     }
 })();
@@ -27,19 +50,23 @@
     'use strict';
     angular
         .module('app.index.controller',[])
-        .controller('IndexController', IndexController);
+        .controller('IndexViewController', IndexViewController);
     
-    IndexController.$inject = ['factoryEvent'];
+    IndexViewController.$inject = ['factoryEvent'];
 
-    function IndexController(factoryEvent){
+    function IndexViewController(factoryEvent){
         var vm = this;
 
         function activate(){
-            var data = factoryEvent.getIndexPage();
-            console.log(data);
+            factoryEvent.getIndexPage()
+                .then(function(data){
+                    vm.data = data;
+                    
+                }, function(err){
+                    vm.err = err;
+                });
         }
         activate();
-        
     }
 })();
 
@@ -50,13 +77,18 @@
         .module('app.about.controller',[])
         .controller('AboutController',AboutController);
 
-    AboutController.$inject =['$http'];
+    AboutController.$inject =['factoryEvent'];
 
-    function AboutController($http){
+    function AboutController(factoryEvent){
         var vm =this;
 
         function activate(){
-
+            factoryEvent.getAboutPage()
+                .then(function(data){
+                    vm.data = data;
+                }, function(err){
+                    vm.err = err;
+                });
         }
         activate();
     }
