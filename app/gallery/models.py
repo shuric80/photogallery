@@ -2,9 +2,10 @@
 
 from app import bcrypt
 from datetime import datetime
-from sqlalchemy import Column, Integer, Unicode, Text, DateTime
+from sqlalchemy import Column, Integer, \
+    Unicode, Text, \
+    DateTime, Boolean
 from sqlalchemy.ext.hybrid import hybrid_property
-
 
 from app import db
 
@@ -17,6 +18,7 @@ class MixinModel:
 
 class SuperUser(db.Model, MixinModel):
     __tablename__ = 'superuser'
+
     id = Column(Integer, primary_key=True)
     login = Column(Unicode(128), nullable=True)
     email = Column(Unicode(128), nullable=True)
@@ -49,6 +51,7 @@ class SuperUser(db.Model, MixinModel):
         return '<User %r>' % (self.login)
 
 
+
 class User(db.Model, MixinModel):
     __tablename__ = 'user'
 
@@ -67,17 +70,38 @@ class User(db.Model, MixinModel):
             return False
 
 
-class Content(db.Model, MixinModel):
-    __tablename__ = 'content'
+class Event(db.Model, MixinModel):
+    __tablename__ = 'event'
 
     id = Column(Integer, primary_key=True)
     title = Column(Unicode(512))
-    text = Column(Text(10000))
+    content = Column(Text(10000))
     tstamp = Column(DateTime, default=datetime.utcnow)
+    time_start = Column(DateTime)
+    time_end = Column(DateTime)
+    hidden = Column(Boolean, default=False)
 
 
 class Mail(db.Model):
-    __tablename__ ='email'
+    __tablename__ = 'email'
+
     id = Column(Integer, primary_key=True)
     subject = Column(Unicode(1024))
     text = Column(Text(5000))
+
+
+class News(db.Model, MixinModel):
+    __tablename__ = 'news'
+
+    id = Column(Integer, primary_key=True)
+    subject = Column(Unicode(128))
+    content = Column(Text(10124))
+    tstamp = Column(DateTime, default=datetime.utcnow)
+    hidden = Column(Boolean, default=False)
+
+
+class About(db.Model, MixinModel):
+    __tablename__ = 'about'
+
+    id = Column(Integer, primary_key=True)
+    content = Column(Text(2048))

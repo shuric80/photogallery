@@ -1,30 +1,29 @@
-<div class="container">
-    <div class="post" ng-click="loadPostExt()">
-        <!--  <a ui-sref="event({id:vm.id})"> -->
+<div class="post">
+    <div class="container-fluid">
         <div class="row">
-            <div ng-if="vm.odd == 'false'"> <!--   <hr class="section-heading-spacer"-->
-                <div class="col-lg-4 col-sm-6 col-lg-offset-1">
-                    <img class="thumbnail" ng-src="{[ vm.photo]}" alt=""/>
-                </div>
-                <div class="col-lg-6 col-sm-6">
-                    <div class="clearfix"></div>
-                    <h2 class="section-heading">
-                        <!-- <a ui-sref="event({id:vm.id})">{[ vm.title]}</h2></a -->
-                        <h2>{[vm.title]}</h2>
-                        <p class="lead">{[vm.text]}</p>
-                </div>
+            <div class="col-lg-12 col-sm-12">
+                <img ng-src="{[vm.photo_0]}" class="img-responsive img-rounded"/>
             </div>
-            <div ng-if="vm.odd =='true'">
-                <div class="col-lg-4 col-sm-6 col-lg-offset-1">
-                    <div class="clearfix"></div>
-                    <h2 class="section-heading">
-                        <!-- -a ui-sref="event({id:vm.id})">{[ vm.title]}</h2></a -->
-                        <h2>{[vm.title]}</h2>
-                        <p class="lead">{[vm.text]}</p>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <img class="thumbnail" ng-src="{[ vm.photo]}" alt=""/>
-                </div>
+        </div>
+
+        <div class="row visible-lg">
+            <div class="col-lg-6 col-sm-6">
+                <img ng-src="{[vm.photo_1]}" class="img-responsive img-rounded""/>
+            </div>
+            <div class="col-lg-6 col-sm-6">
+                <img ng-src="{[vm.photo_1]}" class="img-responsive img-rounded""/>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-lg-2 col-sm-3">
+                <div class="data">data</div>
+            </div>
+            <div class="col-lg-9 col-sm-7">
+                <h2 class="section-heading">{[vm.title]}</h2>
+            </div>
+            <div class="col-lg-1 col-sm-2">
+                <a ui-sref="event"><button type="button" class="btn btn-primary btn-lg">+</button></a>
             </div>
         </div>
     </div>

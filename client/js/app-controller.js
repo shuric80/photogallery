@@ -33,6 +33,8 @@
     ListViewController.$inject = ['factoryEvent'];
 
     function ListViewController(factoryEvent){
+        var vm = this;
+        
         function activate(){
             factoryEvent.getListPage()
                 .then(function(data){
@@ -56,12 +58,11 @@
 
     function IndexViewController(factoryEvent){
         var vm = this;
-
+        vm.test ="test";    
         function activate(){
             factoryEvent.getIndexPage()
                 .then(function(data){
                     vm.data = data;
-                    
                 }, function(err){
                     vm.err = err;
                 });
@@ -89,6 +90,22 @@
                 }, function(err){
                     vm.err = err;
                 });
+        }
+        activate();
+    }
+})();
+
+
+(function(){
+    'use strict';
+    angular
+        .module('app.news.controller',[])
+        .controller('NewsViewController',NewsViewController);
+
+    NewsViewController.$inject = ['factoryEvent'];
+    function NewsViewController(factoryEvent){
+        function activate(){
+            
         }
         activate();
     }
