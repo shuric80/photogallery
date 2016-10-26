@@ -51,15 +51,19 @@ init_login()
 
 from app.gallery.admin import CustomAdminIndexView
 
+
 admin = Admin( app, name='event', \
                base_template = 'master.html', \
                index_view=CustomAdminIndexView())
 
+
 from app.gallery.admin import AdminView, UserView, \
     ContentView, MailView
 
+
 from app.gallery.models import SuperUser, User, \
     Content, Mail
+
 
 admin.add_view(AdminView(SuperUser, db.session))
 admin.add_view(UserView(User, db.session))
@@ -98,10 +102,31 @@ def index():
     debug = app.config['DEBUG']
     return render_template('index.html', debug=debug)
 
+<<<<<<< HEAD
 @app.route('/api/events', methods=['GET'])
 def events():
     logger.debug('events')
     return jsonify('all')
+=======
+class Post:
+    def __init__(self, n):
+        self.photo = 'http://placehold.it/300x200'
+        self.title = 'title:%s'%n
+        self.text = 'text'
+
+        
+@app.route('/api/event', methods=['GET'])
+def eventAll():
+    
+    return jsonify('all')
+
+
+@app.route('/api/index')
+def restindex():
+    
+    return jsonify(dict(a='b'))
+
+>>>>>>> f12637452271e1e30e17fce80fcefd2a078c302c
 
     
 @app.route('/api/events/<id>', methods=['GET','POST'])
@@ -109,6 +134,7 @@ def event(id):
     logger.debug('api event')
     logger.debug(id)
     return jsonify(id)
+
 
 migrate = Migrate(app, db)
 manager = Manager(app)

@@ -1,13 +1,31 @@
 <div class="container">
-    <div class="row">
-        <hr class="section-heading-spacer">
-        <div class="col-lg-4 col-sm-6">
-            <img class="thumbnail" ng-src="{[i.photo]}" alt=""/>
-        </div>
-        <div class="col-lg-8 col-sm-6">
-            <div class="clearfix"></div>
-            <h2 class="section-heading">{[i.title]}</h2>
-            <p class="lead">{[i.text]}</p>
+    <div class="post" ng-click="loadPostExt()">
+        <!--  <a ui-sref="event({id:vm.id})"> -->
+        <div class="row">
+            <div ng-if="vm.odd == 'false'"> <!--   <hr class="section-heading-spacer"-->
+                <div class="col-lg-4 col-sm-6 col-lg-offset-1">
+                    <img class="thumbnail" ng-src="{[ vm.photo]}" alt=""/>
+                </div>
+                <div class="col-lg-6 col-sm-6">
+                    <div class="clearfix"></div>
+                    <h2 class="section-heading">
+                        <!-- <a ui-sref="event({id:vm.id})">{[ vm.title]}</h2></a -->
+                        <h2>{[vm.title]}</h2>
+                        <p class="lead">{[vm.text]}</p>
+                </div>
+            </div>
+            <div ng-if="vm.odd =='true'">
+                <div class="col-lg-4 col-sm-6 col-lg-offset-1">
+                    <div class="clearfix"></div>
+                    <h2 class="section-heading">
+                        <!-- -a ui-sref="event({id:vm.id})">{[ vm.title]}</h2></a -->
+                        <h2>{[vm.title]}</h2>
+                        <p class="lead">{[vm.text]}</p>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <img class="thumbnail" ng-src="{[ vm.photo]}" alt=""/>
+                </div>
+            </div>
         </div>
     </div>
 </div>

@@ -4,17 +4,25 @@
     angular.module('app.directive',[])
         .directive('post', post);
 
-    function post(){
+    post.$inject = ['$location'];
+    function post($location){
         return {
             scope:{
                 post:'@',
+                odd:'@'
             },
             restrict:'E',
+            controller: function($scope){
+                $scope.vm = JSON.parse($scope.post);
+                $scope.vm.odd = $scope.odd;
+                console.log($scope.vm.odd);
+                $scope.loadPostExt = function(){
+                      $location.path('/event/'+$scope.vm.id);
+                };
+            },
             templateUrl: 'static/templates/post.html',
             link: function(scope,element, attrs){
-                element.on('click',function(){
-                    console.log('click');
-                  });
+                //scope.vm.odd = attrs.odd;
             }
         };
     }
