@@ -29,7 +29,18 @@
                         controller:'IndexViewController',
                         controllerAs:'vm'
                     }}
-            }).state('detailView', {
+            })
+            .state('news',{
+                url:'/news',
+                views:{
+                    '':{
+                        tempalteUrl:'static/templates/news.html',
+                        controller:'NewsViewController',
+                        controllerAs:'vm'
+                    }
+                }
+            })
+            .state('detailView', {
                 url:'/event/:id',
 >>>>>>> f12637452271e1e30e17fce80fcefd2a078c302c
                 views:{

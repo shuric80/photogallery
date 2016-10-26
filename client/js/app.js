@@ -1,11 +1,14 @@
 (function () {
 	'use strict';
 	angular.module('myApp', [
-//        'ngResource',
+        'ngSanitize',
+        'markdown',
+        //        'ngResource',
    	'app.detail.controller',
 	    'app.index.controller',
         'app.about.controller',
         'app.list.controller',
+        'app.news.controller',
 		'app.route',
         'app.factory',
         'app.directive',

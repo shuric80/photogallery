@@ -5,13 +5,13 @@ from flask import render_template,\
 
 from app import logger
 from send_mail import send_email
-from models import User, Content
+from models import User, Event
 from flask import jsonify
 
 
 logger.info('Load views')
 
-mod = Blueprint('event',__name__, url_prefix='/event', \
+mod = Blueprint('frm',__name__, url_prefix='/event', \
                 template_folder='templates')
 
 """

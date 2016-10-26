@@ -1,18 +1,21 @@
-<a name="last_news"></a>
+<a name="news"></a>
 <div class="content-section-a">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-sm-6 col-lg-offset-2">
                 <hr class="section-heading-spacer">
                 <div class="clearfix"></div>
-                <a ui-sref="last">Last news</a>
-                <h2 class="section-heading">{[ vm.news.title ]}<br>{[ vm.news.br ]}</h2>
-                <p class="lead">{[ vm.news.text ]}</p>
+                <a ui-sref="news">News</a>
+                <h2 class="section-heading">{[vm.data.news.subject]}</h2>
+                <p class="lead"><markdown markdown-model="vm.data.news.content"></markdown>
+                    <a ui-sref="news">
+                        <button type="button" class="btn btn-submit">Read more-></button>
+                    </a>
+                </p>
             </div>
         </div>
     </div>
 </div>
-
 <a name="about"></a>
 <div class="content-section-b">
     <div class="container">
@@ -21,36 +24,28 @@
                 <hr class="section-heading-spacer">
                 <div class="clearfix"></div>
                 <a ui-sref="about">About</a>
-                <h2 class="section-heading">{[ vm.about.title ]}<br>{[ vm.about.br ]}</h2>
-                <p class="lead">{[ vm.about.text ]}</p>
+                <h2 class="section-heading">{[vm.data.about.title]}</h2>
+                <p class="lead"><markdown markdown-model="vm.data.about.content"></markdown>
+                    <a ui-sref="about">
+                        <button type="button" class="btn btn-submit">Read more-></button>
+                    </a>
+                </p>
             </div>
         </div>
     </div>
 </div>
 
-<a name="past_events"></a>
+<a name="events"></a>
 <div class="content-section-c">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-sm-6">
                 <hr class="section-heading-spacer">
                 <div class="clearfix"></div>
-                <a ui-sref="past_events">Past events</a>
-                <h2 class="section-heading">{[vm.past_events.title]}<br>{[vm.past_events.br]}</h2>
-                <p class="lead">{[vm.past_events.text]}</p>
+                <div ng-repeat="i in vm.data.events">
+                     <post post="{[i]}" odd="{[$odd]}"></post>
+                </div>
             </div>
         </div>
     </div>
 </div>
-
-<!-- div class="container">
-    <div class="row">
-        <div ng-repeat="i in vm.posts">
-            <div class="content-section">
-                <div class="header-section-spacer"></div>
-                <post post="{[i]}" odd="{[$odd]}">
-                </post>
-            </div>
-        </div>
-    </div>
-</div-->

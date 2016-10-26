@@ -52,24 +52,25 @@ init_login()
 from app.gallery.admin import CustomAdminIndexView
 
 
-admin = Admin( app, name='event', \
+admin = Admin( app, name='frm', \
                base_template = 'master.html', \
                index_view=CustomAdminIndexView())
 
 
 from app.gallery.admin import AdminView, UserView, \
-    ContentView, MailView
+    EventView, MailView, AboutView, NewsView
 
 
 from app.gallery.models import SuperUser, User, \
-    Content, Mail
+    Event, Mail, News, About
 
 
 admin.add_view(AdminView(SuperUser, db.session))
 admin.add_view(UserView(User, db.session))
-admin.add_view(ContentView(Content, db.session))   
+admin.add_view(EventView(Event, db.session))   
 admin.add_view(MailView(Mail, db.session))
-
+admin.add_view(NewsView(News, db.session))
+admin.add_view(AboutView(About, db.session))
 
 """
     GENERATE SECRET KEY
@@ -102,31 +103,33 @@ def index():
     debug = app.config['DEBUG']
     return render_template('index.html', debug=debug)
 
-<<<<<<< HEAD
-@app.route('/api/events', methods=['GET'])
-def events():
-    logger.debug('events')
-    return jsonify('all')
-=======
-class Post:
-    def __init__(self, n):
-        self.photo = 'http://placehold.it/300x200'
-        self.title = 'title:%s'%n
-        self.text = 'text'
-
         
 @app.route('/api/event', methods=['GET'])
 def eventAll():
-    
     return jsonify('all')
 
 
 @app.route('/api/index')
 def restindex():
-    
-    return jsonify(dict(a='b'))
+    about_ext = About.query.first()
+    news_ext = News.query.first()
+    events_ext = Event.query
 
->>>>>>> f12637452271e1e30e17fce80fcefd2a078c302c
+    about = dict(content=about_ext.content.split('<hr />')[0])
+    news = dict(title=news_ext.subject, content=news_ext.content.split('<hr />')[0])
+
+    events = dict()
+    cnt = 0
+    for event in events_ext[:5]:
+        events[cnt] = dict(title=event.title,
+                           photo_0='http://placehold.it/300x200',
+                           photo_1='http://placehold.it/300x200',
+                           photo_2='http://placehold.it/300x200',
+                           content=event.content.split('<hr />')[0])
+        
+    return jsonify(dict(about=about, news=news, events=events))
+
+
 
     
 @app.route('/api/events/<id>', methods=['GET','POST'])
@@ -146,7 +149,7 @@ manager.add_command('clean', Clean)
 
 #from app.gallery.views import *
 
-from app.gallery.views import mod as event
-app.register_blueprint(event)
+from app.gallery.views import mod as frm
+app.register_blueprint(frm)
 
 from app.gallery.models import SuperUser

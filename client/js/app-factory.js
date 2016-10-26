@@ -33,6 +33,10 @@
         function getDetailPage(id){
             return $http.get('/api/event/'+id).then(handleSuccess, handleError('Error event page'));    
         }
+
+        function getNewsPage(){
+            return $http.get('/api/news').then(handleSuccess, handleError());
+        }
         function register(){
             return $http.post('/api/register').then(handleSuccess, handleError('Error register'));
         }
@@ -40,7 +44,7 @@
         // private functions
         
         function handleSuccess(res) {
-            return JSON.parse(res.data);
+            return res.data;
         }
         
         function handleError(error) {

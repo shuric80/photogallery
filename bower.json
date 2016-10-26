@@ -24,6 +24,7 @@
     "angular-cookies": "^1.5.8",
     "angular-markdown-text": "^0.0.2",
     "angular-resource": "^1.5.8",
-    "grunt-karma": "^2.0.0"
+    "grunt-karma": "^2.0.0",
+    "angular-markdown-directive": "^0.3.1"
   }
 }
