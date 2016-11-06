@@ -9,14 +9,12 @@
 
     function factoryEvent($http){
 
-<<<<<<< HEAD
-        return $resource('/api/events/:id');
-=======
         var factory = {};
         factory.getIndexPage = getIndexPage;
         factory.getAboutPage = getAboutPage;
         factory.getListPage = getListPage;
         factory.getDetailPage = getDetailPage;
+        factory.getNewsPage = getNewsPage;
         factory.register = register;
 
         return factory;
@@ -52,6 +50,5 @@
                 return { success: false, message: error };
             };
         }
->>>>>>> f12637452271e1e30e17fce80fcefd2a078c302c
     }
 })();

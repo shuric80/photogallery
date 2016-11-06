@@ -108,6 +108,13 @@ def index():
 def eventAll():
     return jsonify('all')
 
+@app.route('/api/about')
+def about():
+    logger.debug("about")
+    q_about = About.query.first()
+    return jsonify(content=q_about.content)
+
+
 
 @app.route('/api/index')
 def restindex():

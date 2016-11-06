@@ -75,11 +75,11 @@
     'use strict';
     angular
         .module('app.about.controller',[])
-        .controller('AboutController',AboutController);
+        .controller('AboutViewController',AboutViewController);
 
-    AboutController.$inject =['factoryEvent'];
+    AboutViewController.$inject =['factoryEvent'];
 
-    function AboutController(factoryEvent){
+    function AboutViewController(factoryEvent){
         var vm =this;
 
         function activate(){
@@ -100,11 +100,19 @@
     'use strict';
     angular
         .module('app.news.controller',[])
-        .controller('NewsViewController',NewsViewController);
+        .controller('NewsViewController', NewsViewController);
 
     NewsViewController.$inject = ['factoryEvent'];
     function NewsViewController(factoryEvent){
+        var vm = this;
+
         function activate(){
+            factoryEvent.getNewsPage()
+                .then(function(data){
+                    vm.data = data;
+                }, function(err){
+                    vm.err = err;
+                });
             
         }
         activate();
