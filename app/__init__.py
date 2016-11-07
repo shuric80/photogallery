@@ -115,6 +115,11 @@ def about():
     return jsonify(content=q_about.content)
 
 
+@app.route('/api/news')
+def news():
+    return jsonify('news')
+
+
 
 @app.route('/api/index')
 def restindex():

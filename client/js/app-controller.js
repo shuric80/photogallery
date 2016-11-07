@@ -97,7 +97,8 @@
 
 
 (function(){
-    'use strict';
+   'use strict';
+
     angular
         .module('app.news.controller',[])
         .controller('NewsViewController', NewsViewController);
@@ -105,7 +106,8 @@
     NewsViewController.$inject = ['factoryEvent'];
     function NewsViewController(factoryEvent){
         var vm = this;
-
+        vm.data = "test";
+        console.log("news");
         function activate(){
             factoryEvent.getNewsPage()
                 .then(function(data){
@@ -115,6 +117,6 @@
                 });
             
         }
-        activate();
+        //activate();
     }
 })();

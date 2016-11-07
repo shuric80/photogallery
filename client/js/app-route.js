@@ -22,7 +22,7 @@
                 url:'/news',
                 views:{
                     '':{
-                        tempalteUrl:'static/templates/news.html',
+                        templateUrl:'static/templates/news.html',
                         controller:'NewsViewController',
                         controllerAs:'vm'
                     }
