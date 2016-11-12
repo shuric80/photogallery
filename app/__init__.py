@@ -125,21 +125,20 @@ def news():
 def restindex():
     about_ext = About.query.first()
     news_ext = News.query.first()
-    events_ext = Event.query
+    events = Event.query
 
     about = dict(content=about_ext.content.split('<hr />')[0])
     news = dict(title=news_ext.subject, content=news_ext.content.split('<hr />')[0])
 
-    events = dict()
+    d_events = dict()
     cnt = 0
-    for event in events_ext[:5]:
-        events[cnt] = dict(title=event.title,
-                           photo_0='http://placehold.it/300x200',
-                           photo_1='http://placehold.it/300x200',
-                           photo_2='http://placehold.it/300x200',
-                           content=event.content.split('<hr />')[0])
-        
-    return jsonify(dict(about=about, news=news, events=events))
+    for event in events:
+        cnt += 1
+        d_events[cnt] = dict(id = event.id,
+                           title=event.title,
+                           photo='http://placehold.it/300x200',
+                           content=event.content.split('<hr />')[0][:400])
+    return jsonify(dict(about=about, news=news, events=d_events))
 
 
 

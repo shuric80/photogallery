@@ -9,15 +9,12 @@
         return {
             scope:{
                 post:'@',
-                odd:'@'
             },
             restrict:'E',
             controller: function($scope){
                 $scope.vm = JSON.parse($scope.post);
-                $scope.vm.odd = $scope.odd;
-                console.log($scope.vm.odd);
                 $scope.loadPostExt = function(){
-                      $location.path('/event/'+$scope.vm.id);
+                  //  $location.path('/event/'+$scope.vm.id);
                 };
             },
             templateUrl: 'static/templates/post.html',
