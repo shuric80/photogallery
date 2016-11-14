@@ -26,7 +26,7 @@
             return $http.get('/api/about').then(handleSuccess, handleError('Error about page'));    
         }
         function getListPage(){
-            return $http.get('/api/events').then(handleSuccess, handleError('Error events page'));    
+            return $http.get('/api/events.all').then(handleSuccess, handleError('Error events page'));    
         }
         function getDetailPage(id){
             return $http.get('/api/event/'+id).then(handleSuccess, handleError('Error event page'));    

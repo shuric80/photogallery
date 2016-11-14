@@ -11,6 +11,11 @@
         
         var id = $stateParams.id;
 
+        vm.user ={};
+        vm.submit = function (user){
+            vm.user = angular.copy(user);
+            factoryEvent.addUser(user);
+        };
         function activate(){
             factoryEvent.getDetailPage(id)
                 .then(function(data){
@@ -39,6 +44,7 @@
             factoryEvent.getListPage()
                 .then(function(data){
                     vm.data = data;
+                    console.log(vm.data);
                 }, function(err){
                     vm.err= err;
                 });
@@ -97,7 +103,7 @@
 
 
 (function(){
-   'use strict';
+    'use strict';
 
     angular
         .module('app.news.controller',[])

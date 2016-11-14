@@ -32,7 +32,7 @@
                 url:'/event/:id',
                 views:{
                     '':{
-                        templateUrl:'static/templates/content.html',
+                        templateUrl:'static/templates/event.html',
                         controller: 'DetailViewController',
                         controllerAs: 'vm'
                     }}

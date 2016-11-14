@@ -1,8 +1,13 @@
-*.pyc
 !*
+*.pyc
+.tmp/
+app/*.pyc
+app/gallery/*.pyc
 app/static/js/
 app/static/css/
+app/static/templates/
 env/
+.#
 activate
 bower_components/
 node_modules/

@@ -104,10 +104,6 @@ def index():
     return render_template('index.html', debug=debug)
 
         
-@app.route('/api/event', methods=['GET'])
-def eventAll():
-    return jsonify('all')
-
 @app.route('/api/about')
 def about():
     logger.debug("about")
@@ -130,25 +126,42 @@ def restindex():
     about = dict(content=about_ext.content.split('<hr />')[0])
     news = dict(title=news_ext.subject, content=news_ext.content.split('<hr />')[0])
 
-    d_events = dict()
-    cnt = 0
+    l_events = list()
     for event in events:
-        cnt += 1
-        d_events[cnt] = dict(id = event.id,
+        l_events.append( dict(id = event.id,
                            title=event.title,
+                              time_start= event.time_start,
+                              time_end=event.time_end,
                            photo='http://placehold.it/300x200',
-                           content=event.content.split('<hr />')[0][:400])
-    return jsonify(dict(about=about, news=news, events=d_events))
+                           content=event.content.split('<hr />')[0][:400]))
+        
+    return jsonify(dict(about=about, news=news, events=l_events))
 
 
 
     
-@app.route('/api/events/<id>', methods=['GET','POST'])
+@app.route('/api/event/<id>', methods=['GET','POST'])
 def event(id):
-    logger.debug('api event')
-    logger.debug(id)
-    return jsonify(id)
+    event = Event.query.filter_by(id = id).first()
 
+    return jsonify(dict(id= id, title = event.title, content=event.content, time_start= event.time_start, time_end=event.time_end))
+
+
+@app.route('/api/events.all', methods=['GET',])
+def eventAll():
+    logger.debug('all event')
+    q_event = Event.query
+    l_events = list()
+    for event in q_event:
+        l_events.append(dict(id = event.id,
+                             time_start= event.time_start,
+                             time_end=event.time_end,
+        title= event.title,
+        photo='http://placehold.it/300x200',
+        content=event.content.split('<hr />')[0])
+        )
+
+    return jsonify(l_events)
 
 migrate = Migrate(app, db)
 manager = Manager(app)

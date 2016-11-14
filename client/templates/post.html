@@ -1,5 +1,5 @@
 <div class="post">
-    <div class="container-fluid">
+    <div class="container">
         <div class="row">
             <div class="col-lg-4 col-md-6 col-sm-12">
                 <img ng-src="{[vm.photo]}" class="img-responsive img-rounded"/>
@@ -8,9 +8,10 @@
                 <a ui-sref="detailView({ id: vm.id })">
                     <h2 class="section-heading">{[vm.title]}</h2>
                 </a>
+                <div class="time">Data:{[vm.time_start]}
+                  </div>
                 <p class="lead"><markdown markdown-model="vm.content"></markdown>
-                    
-            </div>
+                 </div>
         </div>
     </div>
 </div>
