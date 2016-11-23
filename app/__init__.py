@@ -2,7 +2,8 @@
 
 import os
 import sys
-from flask import Flask, render_template
+from flask import Flask, render_template, \
+    jsonify, request
 
 from flask_bower import Bower
 from flask_sqlalchemy import SQLAlchemy
@@ -33,7 +34,7 @@ Bower(app)
 bcrypt = Bcrypt(app)
 
 
-debug_toolbar = DebugToolbarExtension(app) if app.config['DEBUG'] else None
+#debug_toolbar = DebugToolbarExtension(app) if app.config['DEBUG'] else None
 
 
 # Initialize flask-login
@@ -50,21 +51,27 @@ init_login()
 
 from app.gallery.admin import CustomAdminIndexView
 
-admin = Admin( app, name='event', \
+
+admin = Admin( app, name='frm', \
                base_template = 'master.html', \
                index_view=CustomAdminIndexView())
 
+
 from app.gallery.admin import AdminView, UserView, \
-    ContentView, MailView
+    EventView, MailView, AboutView, NewsView, NewsFeedView
+
 
 from app.gallery.models import SuperUser, User, \
-    Content, Mail
+    Event, Mail, News, About, NewsFeed
+
 
 admin.add_view(AdminView(SuperUser, db.session))
 admin.add_view(UserView(User, db.session))
-admin.add_view(ContentView(Content, db.session))   
+admin.add_view(EventView(Event, db.session))   
 admin.add_view(MailView(Mail, db.session))
-
+admin.add_view(NewsView(News, db.session))
+admin.add_view(AboutView(About, db.session))
+admin.add_view(NewsFeedView(NewsFeed, db.session))
 
 """
     GENERATE SECRET KEY
@@ -91,8 +98,87 @@ if not app.config['DEBUG']:
 def not_found(error):
     return render_template('404.html'), 404
 
+
+@app.route('/')
+def index():
+    debug = app.config['DEBUG']
+    newsfeed = NewsFeed.query
+    return render_template('index.html', debug=debug, newsfeed = newsfeed.all())
+
+        
+@app.route('/api/about')
+def about():
+    logger.debug("about")
+    q_about = About.query.first()
+    return jsonify(content=q_about.content)
+
+
+@app.route('/api/news')
+def news():
+    news = News.query.all()
+    return jsonify('news')
+
+
+
+@app.route('/api/index')
+def restindex():
+    about_ext = About.query.first()
+    news_ext = News.query.first()
+    events = Event.query
+    about = dict(content=about_ext.content.split('<hr />')[0])
+    news = dict(title=news_ext.subject, content=news_ext.content.split('<hr />')[0])
+       
+    l_events = list()
+
+    for event in events:
+        l_events.append( dict( 
+            id = event.id,
+            title=event.title,
+            time_start= event.time_start,
+            time_end=event.time_end,
+            photo='http://placehold.it/300x200',
+            content=event.content.split('<hr />')[0][:400]))
+    
+    return jsonify(dict(
+        about = about, news = news,
+        events = l_events,
+    ))
+
+
+
+    
+@app.route('/api/event/<id>', methods=['GET','POST'])
+def event(id):
+    event = Event.query.filter_by(id = id).first()
+    return jsonify(dict(
+        id = id,
+        title = event.title,
+        content=event.content,
+        time_start= event.time_start,
+        time_end=event.time_end
+    ))
+
+
+@app.route('/api/events.all', methods=['GET',])
+def eventAll():
+    logger.debug('all event')
+    q_event = Event.query
+    l_events = list()
+    for event in q_event:
+        l_events.append(dict(id = event.id,
+                             time_start= event.time_start,
+                             time_end=event.time_end,
+        title= event.title,
+        photo='http://placehold.it/300x200',
+        content=event.content.split('<hr />')[0])
+        )
+
+    return jsonify(l_events)
+
+
 migrate = Migrate(app, db)
 manager = Manager(app)
+
 
 manager.add_command('shell', Shell(make_context=lambda: {'app': app}))
 manager.add_command('db', MigrateCommand)
@@ -101,7 +187,7 @@ manager.add_command('clean', Clean)
 
 #from app.gallery.views import *
 
-from app.gallery.views import mod as event
-app.register_blueprint(event)
+from app.gallery.views import mod as frm
+app.register_blueprint(frm)
 
 from app.gallery.models import SuperUser

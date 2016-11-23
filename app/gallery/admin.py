@@ -24,7 +24,7 @@ class CKTextAreaField(TextAreaField):
     widget = CKTextAreaWidget()
 
     
-class ContentView(ModelView):
+class BaseView(ModelView):
 
     def is_accessible(self):
        return login.current_user.is_authenticated
@@ -32,15 +32,29 @@ class ContentView(ModelView):
     def inaccessible_callback(self, name, **kwargs):
         return redirect(url_for('login', next=request.url))
 
-    form_overrides = dict(text=CKTextAreaField)
+    form_overrides = dict(content=CKTextAreaField)
 
     create_template = 'edit.html'
     edit_template = 'edit.html'
 
 
-class MailView(ContentView):
+class EventView(BaseView):
     pass
 
+
+class MailView(BaseView):
+    pass
+
+
+class AboutView(BaseView):
+    pass
+
+
+class NewsView(BaseView):
+    pass
+
+class NewsFeedView(BaseView):
+    pass
 
 class AdminView(ModelView):
 
