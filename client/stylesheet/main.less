@@ -3,7 +3,7 @@
  * Copyright 2013-2016 Start Bootstrap
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
  */
-
+@backcolor: #f8f8f8;
 body,
 html {
     width: 100%;
@@ -96,6 +96,20 @@ h6 {
     background-color: #f8f8f8;
 }
 
+.newsfeed_post {
+    padding-top:20px;
+    font-size:12px;
+    text-align:center;
+    border-top:3px solid #aaaaaa;
+    border-bottom:1px solid @backcolor;
+    background-color:@backcolor;
+    .newsfeed_content {
+        text-align:left;
+        background-color: @backcolor;
+        font-size:12px;
+             }
+}
+
 .content-section-b {
     border-top: 1px solid #e7e7e7;
     border-bottom: 1px solid #e7e7e7;
@@ -176,7 +190,6 @@ p.copyright {
 }
 
 div.post {
-    @backcolor: #f8f8f8;
     height:60%;
     background-color:@backcolor;
     //padding: 50px 0;
@@ -210,3 +223,4 @@ div.post {
         
     }
 }
+

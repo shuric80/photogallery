@@ -58,11 +58,11 @@ admin = Admin( app, name='frm', \
 
 
 from app.gallery.admin import AdminView, UserView, \
-    EventView, MailView, AboutView, NewsView
+    EventView, MailView, AboutView, NewsView, NewsFeedView
 
 
 from app.gallery.models import SuperUser, User, \
-    Event, Mail, News, About
+    Event, Mail, News, About, NewsFeed
 
 
 admin.add_view(AdminView(SuperUser, db.session))
@@ -71,6 +71,7 @@ admin.add_view(EventView(Event, db.session))
 admin.add_view(MailView(Mail, db.session))
 admin.add_view(NewsView(News, db.session))
 admin.add_view(AboutView(About, db.session))
+admin.add_view(NewsFeedView(NewsFeed, db.session))
 
 """
     GENERATE SECRET KEY
@@ -101,7 +102,8 @@ def not_found(error):
 @app.route('/')
 def index():
     debug = app.config['DEBUG']
-    return render_template('index.html', debug=debug)
+    newsfeed = NewsFeed.query
+    return render_template('index.html', debug=debug, newsfeed = newsfeed.all())
 
         
 @app.route('/api/about')
@@ -113,6 +115,7 @@ def about():
 
 @app.route('/api/news')
 def news():
+    news = News.query.all()
     return jsonify('news')
 
 
@@ -122,20 +125,24 @@ def restindex():
     about_ext = About.query.first()
     news_ext = News.query.first()
     events = Event.query
-
     about = dict(content=about_ext.content.split('<hr />')[0])
     news = dict(title=news_ext.subject, content=news_ext.content.split('<hr />')[0])
-
+       
     l_events = list()
+
     for event in events:
-        l_events.append( dict(id = event.id,
-                           title=event.title,
-                              time_start= event.time_start,
-                              time_end=event.time_end,
-                           photo='http://placehold.it/300x200',
-                           content=event.content.split('<hr />')[0][:400]))
-        
-    return jsonify(dict(about=about, news=news, events=l_events))
+        l_events.append( dict( 
+            id = event.id,
+            title=event.title,
+            time_start= event.time_start,
+            time_end=event.time_end,
+            photo='http://placehold.it/300x200',
+            content=event.content.split('<hr />')[0][:400]))
+    
+    return jsonify(dict(
+        about = about, news = news,
+        events = l_events,
+    ))
 
 
 
@@ -143,8 +150,13 @@ def restindex():
 @app.route('/api/event/<id>', methods=['GET','POST'])
 def event(id):
     event = Event.query.filter_by(id = id).first()
-
-    return jsonify(dict(id= id, title = event.title, content=event.content, time_start= event.time_start, time_end=event.time_end))
+    return jsonify(dict(
+        id = id,
+        title = event.title,
+        content=event.content,
+        time_start= event.time_start,
+        time_end=event.time_end
+    ))
 
 
 @app.route('/api/events.all', methods=['GET',])
@@ -163,8 +175,10 @@ def eventAll():
 
     return jsonify(l_events)
 
+
 migrate = Migrate(app, db)
 manager = Manager(app)
+
 
 manager.add_command('shell', Shell(make_context=lambda: {'app': app}))
 manager.add_command('db', MigrateCommand)

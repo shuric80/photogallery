@@ -6,6 +6,7 @@ from sqlalchemy import Column, Integer, \
     Unicode, Text, \
     DateTime, Boolean
 from sqlalchemy.ext.hybrid import hybrid_property
+#from sqlalchemy_utils import URLType
 
 from app import db
 
@@ -105,3 +106,13 @@ class About(db.Model, MixinModel):
 
     id = Column(Integer, primary_key=True)
     content = Column(Text(2048))
+
+
+class NewsFeed(db.Model, MixinModel):
+    __tablename__ = 'newsfeed'
+
+    id = Column(Integer, primary_key=True)
+    title = Column(Unicode(128))
+    content = Column(Unicode(512))
+    #url = Column(URLType)
+    tstamp = Column(DateTime, default=datetime.utcnow)

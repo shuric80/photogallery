@@ -6,16 +6,22 @@
 
     DetailViewController.$inject =['$stateParams','factoryEvent'];
 
+    
     function DetailViewController($stateParams, factoryEvent){
         var vm = this;
         
         var id = $stateParams.id;
+        
+         vm.submit = function (form, user){
+            if(form.$valid){
+                vm.user = angular.copy(user);
+                //this.rg = angular.copy({});
+                console.log(vm.user);
+                console.log(this);
+                }
 
-        vm.user ={};
-        vm.submit = function (user){
-            vm.user = angular.copy(user);
-            factoryEvent.addUser(user);
         };
+        
         function activate(){
             factoryEvent.getDetailPage(id)
                 .then(function(data){
@@ -25,6 +31,7 @@
                 });
         }
         activate();
+          
     }
 })();
 

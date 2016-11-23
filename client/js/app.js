@@ -12,6 +12,7 @@
 		'app.route',
         'app.factory',
         'app.directive',
+       //'ui.bootstrap'
 	]);
 
 	angular.module('myApp').run(run);

@@ -53,6 +53,9 @@ class AboutView(BaseView):
 class NewsView(BaseView):
     pass
 
+class NewsFeedView(BaseView):
+    pass
+
 class AdminView(ModelView):
 
     def is_accessible(self):
