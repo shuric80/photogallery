@@ -119,19 +119,19 @@ def news():
     return jsonify('news')
 
 
-
 @app.route('/api/index')
 def restindex():
     about_ext = About.query.first()
     news_ext = News.query.first()
     events = Event.query
+    
     about = dict(content=about_ext.content.split('<hr />')[0])
     news = dict(title=news_ext.subject, content=news_ext.content.split('<hr />')[0])
-       
+    
     l_events = list()
 
     for event in events:
-        l_events.append( dict( 
+        l_events.append(dict( 
             id = event.id,
             title=event.title,
             time_start= event.time_start,

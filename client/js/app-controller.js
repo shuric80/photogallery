@@ -4,10 +4,10 @@
         .module('app.detail.controller',[])
         .controller('DetailViewController', DetailViewController);
 
-    DetailViewController.$inject =['$stateParams','factoryEvent'];
+    DetailViewController.$inject =['$scope','$stateParams','factoryEvent'];
 
     
-    function DetailViewController($stateParams, factoryEvent){
+    function DetailViewController($scope,$stateParams, factoryEvent){
         var vm = this;
         
         var id = $stateParams.id;
@@ -15,12 +15,10 @@
          vm.submit = function (form, user){
             if(form.$valid){
                 vm.user = angular.copy(user);
-                //this.rg = angular.copy({});
-                console.log(vm.user);
-                console.log(this);
+                $scope.rg = {};
                 }
-
         };
+
         
         function activate(){
             factoryEvent.getDetailPage(id)

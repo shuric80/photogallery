@@ -53,25 +53,8 @@
         {% else %}
         <script src="{{ url_for('static',filename='js/app.min.js') }}"></script>
         {% endif %}
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3">
-                    <div class="newsfeed">
-                        {% for post in newsfeed %}
-                         <div class="newsfeed_post">
-                             <p>{{ post.title }}</p>
-                             <div class="newsfeed_content">
-                                 {{ post.content | markdown }}
-                             </div>
-                         </div>
-                        {% endfor %}
-                    </div>
-                </div>
-                <div class="col-lg-9">
-                    <div ui-view></div>
-                </div>
-            </div>
-        </div>
+        <div ui-view></div>
+
         </div>
         {% include 'footer.html' %}
     </body>
