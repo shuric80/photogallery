@@ -5,10 +5,11 @@ from wtforms import TextAreaField
 from wtforms.widgets import TextArea
 import flask_login as login
 from flask_admin.contrib.sqla import ModelView
-from flask_admin import AdminIndexView, helpers, expose
-
+from flask_admin import AdminIndexView, helpers, expose, form
+from jinja2 import Markup
 from form import LoginForm
 from app import logger
+from models import file_path
 
 
 class CKTextAreaWidget(TextArea):
@@ -53,8 +54,31 @@ class AboutView(BaseView):
 class NewsView(BaseView):
     pass
 
-class NewsFeedView(BaseView):
-    pass
+
+class ImageAdmin(ModelView):
+
+    def is_accessible(self):
+        return login.current_user.is_authenticated
+
+    def _list_thumbnail(view, context,model, name):
+        if not model.path:
+            return ''
+
+        return Markup('<img src="%s">' % url_for('static', filename=form.thumbgen_filename(model.path)))
+
+    column_formatters = {
+        'path':_list_thumbnail  
+    }
+
+    form_extra_fields = {
+        'path': form.ImageUploadField('Image',
+                                      base_path=file_path,
+                                      thumbnail_size=(400, 300, True))
+}
+
+
+    
+    
 
 class AdminView(ModelView):
 

@@ -72,7 +72,6 @@
     function IndexViewController(factoryEvent){
         var vm = this;
         vm.myInterval = 5000;
-
         function activate(){
 
             factoryEvent.getIndexPage()

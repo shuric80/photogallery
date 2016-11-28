@@ -1,12 +1,14 @@
 #-*- coding:utf-8 -*-
-
+import os
+import os.path as op
 from app import bcrypt
 from datetime import datetime
 from sqlalchemy import Column, Integer, \
     Unicode, Text, \
     DateTime, Boolean
 from sqlalchemy.ext.hybrid import hybrid_property
-#from sqlalchemy_utils import URLType
+from sqlalchemy.event import listens_for
+
 
 from app import db
 
@@ -108,11 +110,39 @@ class About(db.Model, MixinModel):
     content = Column(Text(2048))
 
 
-class NewsFeed(db.Model, MixinModel):
-    __tablename__ = 'newsfeed'
+class Image(db.Model, MixinModel):
+    __tablename__ = 'image'
 
     id = Column(Integer, primary_key=True)
-    title = Column(Unicode(128))
-    content = Column(Unicode(512))
-    #url = Column(URLType)
-    tstamp = Column(DateTime, default=datetime.utcnow)
+    name = Column(Unicode(64))
+    text = Column(Unicode(128))
+    path = Column(Unicode(128))
+
+    def __unicode__(self):
+        return self.title
+
+#file_path = op.join(op.dirname(__file__),'static')
+file_path = '/home/shuric/projects/photogallery/app/static/'
+
+
+try:
+  #os.mkdir(file_path)
+  pass
+except OSError:
+    pass
+
+
+@listens_for(Image, 'after_delete')
+def del_image(mapper, connection, target):
+
+    if target.path:
+        try:
+            os.remove(op.join(file_path, target.path))
+        except OSError:
+            pass
+
+        try:
+            os.remove(op.join(file_path, target.path))
+        except OSError:
+            pass
+        

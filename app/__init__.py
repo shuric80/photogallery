@@ -58,11 +58,11 @@ admin = Admin( app, name='frm', \
 
 
 from app.gallery.admin import AdminView, UserView, \
-    EventView, MailView, AboutView, NewsView, NewsFeedView
+    EventView, MailView, AboutView, NewsView, ImageAdmin
 
 
 from app.gallery.models import SuperUser, User, \
-    Event, Mail, News, About, NewsFeed
+    Event, Mail, News, About, Image
 
 
 admin.add_view(AdminView(SuperUser, db.session))
@@ -71,7 +71,7 @@ admin.add_view(EventView(Event, db.session))
 admin.add_view(MailView(Mail, db.session))
 admin.add_view(NewsView(News, db.session))
 admin.add_view(AboutView(About, db.session))
-admin.add_view(NewsFeedView(NewsFeed, db.session))
+admin.add_view(ImageAdmin(Image, db.session))
 
 """
     GENERATE SECRET KEY
@@ -102,8 +102,7 @@ def not_found(error):
 @app.route('/')
 def index():
     debug = app.config['DEBUG']
-    newsfeed = NewsFeed.query
-    return render_template('index.html', debug=debug, newsfeed = newsfeed.all())
+    return render_template('index.html', debug=debug)
 
         
 @app.route('/api/about')
@@ -121,7 +120,6 @@ def news():
 
 @app.route('/api/index')
 def restindex():
-    """
     about_ext = About.query.first()
     news_ext = News.query.first()
     events = Event.query
@@ -144,7 +142,7 @@ def restindex():
         about = about, news = news,
         events = l_events,
     ))
-    """
+    
     return jsonify('ok')
 
 
