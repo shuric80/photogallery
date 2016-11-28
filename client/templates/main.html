@@ -1,51 +1,24 @@
 <div class="container">
-    <div class="content-section-a">
-        <div class="row">
-            <div class="col-lg-12 col-sm-12">
-                <hr class="section-heading-spacer">
-                <div class="clearfix"></div>
-                <a ui-sref="news">
-                    <div class="title">
-                        <h2 class="section-heading">News</h2>
+    <div class="row">
+        <div class="col-lg-10 offset-lg-1">
+            <hr class="section-heading-spacer">
+            <div class="clearfix"></div>
+            <a ui-sref="about">About</a>
+            <h2 class="section-heading">{[vm.data.about.title]}</h2>
+            <carousel interval="vm.myInterval">
+                <slide ng-repeat="slide in vm.data.slides" active="slide.active">
+                    <img ng-src="{[slide.image]}">
+                    <div class="carousel-caption">
+                        <h4>Slide {[slide.text]}</h4>
                     </div>
-                </a>
-                <div class="content">
-                    <div uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides">
-                        <div uid-slide ng-repeat="slide in slides track by slide.id" index="slide.id">
-                            <img ng-src="{[slide.image]}" style="margin:auto;">
-                            <div class="carousel-caption">
-                                <h4>Slide {[slide.id]}</h4>
-                                <p>{[slide.text]}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- markdown markdown-model="vm.data.news.content"></markdown>
-                <a ui-sref="news">
+                </slide>
+            </carousel>
+            <p class="lead"><markdown markdown-model="vm.data.about.content"></markdown>
+                <a ui-sref="about">
                     <button type="button" class="btn btn-submit">Read more-></button>
                 </a>
+            </p>
 
-                -->
-            </div>
         </div>
     </div>
-</div>
-<!-- 
-<hr class="section-heading-spacer">
-<div class="clearfix"></div>
-<a ui-sref="about">About</a>
-<h2 class="section-heading">{[vm.data.about.title]}</h2>
-<p class="lead"><markdown markdown-model="vm.data.about.content"></markdown>
-    <a ui-sref="about">
-        <button type="button" class="btn btn-submit">Read more-></button>
-    </a>
-</p>
-<hr class="section-heading-spacer">
-<div class="clearfix"></div>
-<div ng-repeat="i in vm.data.events">
-    <post post="{[i]}"></post>
-</div>
-</div>
-</div>
--->
 </div>

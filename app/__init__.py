@@ -121,6 +121,7 @@ def news():
 
 @app.route('/api/index')
 def restindex():
+    """
     about_ext = About.query.first()
     news_ext = News.query.first()
     events = Event.query
@@ -143,6 +144,8 @@ def restindex():
         about = about, news = news,
         events = l_events,
     ))
+    """
+    return jsonify('ok')
 
 
 

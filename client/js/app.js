@@ -1,6 +1,7 @@
 (function () {
 	'use strict';
 	angular.module('myApp', [
+        'ui.bootstrap',
         'ngSanitize',
         'markdown',
         //        'ngResource',
@@ -12,7 +13,7 @@
 		'app.route',
         'app.factory',
         'app.directive',
-       //'ui.bootstrap'
+        
 	]);
 
 	angular.module('myApp').run(run);

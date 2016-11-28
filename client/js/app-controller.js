@@ -4,21 +4,23 @@
         .module('app.detail.controller',[])
         .controller('DetailViewController', DetailViewController);
 
-    DetailViewController.$inject =['$scope','$stateParams','factoryEvent'];
+    DetailViewController.$inject =['$stateParams','factoryEvent'];
 
     
-    function DetailViewController($scope,$stateParams, factoryEvent){
+    function DetailViewController($stateParams, factoryEvent){
         var vm = this;
         
         var id = $stateParams.id;
         
-         vm.submit = function (form, user){
+        vm.submit = function (form, user){
             if(form.$valid){
                 vm.user = angular.copy(user);
-                $scope.rg = {};
-                }
-        };
+                //this.rg = angular.copy({});
+                console.log(vm.user);
+                console.log(this);
+            }
 
+        };
         
         function activate(){
             factoryEvent.getDetailPage(id)
@@ -29,7 +31,7 @@
                 });
         }
         activate();
-          
+        
     }
 })();
 
@@ -69,7 +71,10 @@
 
     function IndexViewController(factoryEvent){
         var vm = this;
+        vm.myInterval = 5000;
+
         function activate(){
+
             factoryEvent.getIndexPage()
                 .then(function(data){
                     vm.data = data;
@@ -77,8 +82,8 @@
                     vm.err = err;
                 });
         }
-        activate();
     }
+    activate();
 })();
 
 
