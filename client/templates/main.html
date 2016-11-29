@@ -1,24 +1,37 @@
 <div class="container">
     <div class="row">
-        <div class="col-lg-10 offset-lg-1">
+        <div class="col-lg-12">
             <hr class="section-heading-spacer">
             <div class="clearfix"></div>
-            <a ui-sref="about">About</a>
-            <h2 class="section-heading">{[vm.data.about.title]}</h2>
+            <!-- a ui-sref="about">About</a-->
             <carousel interval="vm.myInterval">
-                <slide ng-repeat="slide in vm.data.slides" active="slide.active">
-                    <img ng-src="{[slide.image]}">
+                <slide ng-repeat="image in vm.data.images" active="image.active">
+                    <img ng-src="{[image.path]}">
                     <div class="carousel-caption">
-                        <h4>Slide {[slide.text]}</h4>
+                        <markdown markdown-model="image.text"></markdown>
                     </div>
                 </slide>
             </carousel>
-            <p class="lead"><markdown markdown-model="vm.data.about.content"></markdown>
-                <a ui-sref="about">
-                    <button type="button" class="btn btn-submit">Read more-></button>
-                </a>
-            </p>
-
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="content-section-b">
+                <hr class="section-heading-spacer">
+                <div class="clearfix"></div>
+                <h2 class="section-heading">{[vm.data.b.title]}<br>{[ vm.data.b.title_br ]}</h2>
+                <p class="lead"><markdown markdown-model="vm.data.b.text"></markdown></p>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="content-section-c">
+                <div ng-repeat="i in vm.data.events">
+                    <post post="{[i]}">
+                    </post>
+                </div>
+            </div>
         </div>
     </div>
 </div>
