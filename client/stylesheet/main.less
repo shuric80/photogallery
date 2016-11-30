@@ -4,6 +4,9 @@
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
  */
 @backcolor: #f8f8f8;
+@bgcolorPost: #c8c8c8;
+@colorFocus: #acac22;
+
 body,
 html {
     width: 100%;
@@ -38,10 +41,30 @@ h6 {
 }
 
 .post {
+    border-top:1px solid #333333;
+    border-top-right-radius:30px;
+    border-bottom-right-radius:20px;
+    border-bottom-left-radius:10px;
+    border-top-left-radius:10px;
+    margin-bottom:10px;
     padding-bottom:20px;
+    width:100%;
+    background-color:@bgcolorPost;
+
+    .date {
+        
+        
+        
+    }
+    a:link {
+        color:#3388ff;
+    }
+    a:visited {
+        color:#000000;
+    }
     img {
         padding-right:20px;
-        border-radius:5px;
+        border-radius:10px;
         @media(min-width:900px){
             width:200px;
         }
@@ -50,13 +73,18 @@ h6 {
         }
     };
     
-    &:active {
-        background-color:red;
+    &:hover {
+        background-color: @colorFocus;
+}
+          &:focus {
+        background-color: @colorFocus;
     }
-    &:focus {
-        background-color:green;
+    &:active {
+        background-color: @colorFocus;
+    }
+
 }
-}
+
 
 .intro-header {
     padding-top: 50px; /* If you're making other pages, make sure there is 50px of padding to make sure the navbar doesn't overlap content! */

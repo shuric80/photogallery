@@ -1,17 +1,17 @@
 <div class="media post">
-    <div class="media-right media-middle">
-        <img ng-src="{[vm.photo]}" class="media-object">
-    </div>
-    <div class="media-body">
-        <h4 class="media-heading">
-            <a ui-sref="detailView({id: vm.id})">
-                <h2 class="section-heading">{[vm.title]}</h2>
-            </a>
-        </h4>
-        <div class="time">Data:{[vm.time_start]}
-        </div>
+    <a ui-sref="detailView({id:vm.id})">
+        <div class="media-right media-middle">
+            <img ng-src="{[vm.photo]}" class="media-object">
+            <div class="date">{[vm.time_start]}
+            </div>
 
-        <p class="lead"><markdown markdown-model="vm.content"></markdown>
-    </div>
+        </div>
+        <div class="media-body">
+            <h4 class="media-heading">
+                <h3 class="section-heading">{[vm.title]}</h3>
+            </h4>
+            <p class="lead"><markdown markdown-model="vm.content"></markdown>
+        </div>
+    </a>
 </div>
 

@@ -25,13 +25,11 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-lg-12">
-            <div class="content-section-c">
-                <div ng-repeat="i in vm.data.events">
-                    <post post="{[i]}">
-                    </post>
-                </div>
-            </div>
+        <div class="content-section-c">
+            <div ng-repeat="event in vm.data.events">
+                <post post="{[event]}">
+                </post>
+            </div>          
         </div>
     </div>
 </div>
