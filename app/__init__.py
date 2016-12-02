@@ -138,13 +138,13 @@ def restindex():
             dict(id= event.id,
                  photo = '/'.join(('static',event.photo)),
                  title=event.title,
-                 content=event.content,
-                 time_start=event.time_start,
+                 description=event.description,
+                 time_start=event.time_start.strftime('%c'),
                  time_end=event.time_end
             ))
 
     return jsonify(dict(
-             # images = l_images,
+          images = l_images,
         events = l_events
     ))
     

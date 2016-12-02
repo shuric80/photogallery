@@ -1,35 +1,50 @@
 <div class="container">
-    <div class="row">
-        <div class="col-lg-12">
-            <hr class="section-heading-spacer">
-            <div class="clearfix"></div>
-            <!-- a ui-sref="about">About</a-->
-            <carousel interval="vm.myInterval">
-                <slide ng-repeat="image in vm.data.images" active="image.active">
-                    <img ng-src="{[image.path]}">
-                    <div class="carousel-caption">
-                        <markdown markdown-model="image.text"></markdown>
-                    </div>
-                </slide>
-            </carousel>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="content-section-b">
-                <hr class="section-heading-spacer">
-                <div class="clearfix"></div>
-                <h2 class="section-heading">{[vm.data.b.title]}<br>{[ vm.data.b.title_br ]}</h2>
-                <p class="lead"><markdown markdown-model="vm.data.b.text"></markdown></p>
+
+    <div class="content-section-a">
+        <div class="row">
+            <div class="title"></div>
+            <div class="content">
+                <div class="col-lg-12">
+                    <!-- -hr class="section-heading-spacer"-->
+                    <div class="clearfix"></div>
+                    <!-- a ui-sref="about">About</a-->
+                    <carousel interval="vm.myInterval">
+                        <slide ng-repeat="image in vm.data.images" active="image.active">
+                            <img ng-src="{[image.path]}">
+                            <div class="carousel-caption">
+                                <markdown markdown-model="image.text"></markdown>
+                            </div>
+                        </slide>
+                    </carousel>
+                </div>
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="content-section-c">
-            <div ng-repeat="event in vm.data.events">
-                <post post="{[event]}">
+
+    <div class="content-section-b">
+        <div class="row">
+            <div class="title"></div>
+            <div class="content">
+                <div class="col-lg-12">
+                    <!-- hr class="section-heading-spacer"-->
+                    <div class="clearfix"></div>
+                    <markdown markdown-model="vm.data.about"></markdown>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="content-section-c">
+        <div class="title"></div>
+        <div class="row" ng-repeat="event in vm.data.events" ng-if="$index % 2 == 0">
+            <div class="col-lg-5 col-lg-offset-1 col-md-6 col-sm-12">
+                <post post="{[vm.data.events[$index]]}">
                 </post>
-            </div>          
+            </div>
+            <div class="col-lg-5 col-md-6 col-sm-12">
+                <post ng-if="vm.data.events[$index+1] != null" post="{[vm.data.events[$index+1]]}">
+                </post>
+            </div>
         </div>
     </div>
 </div>

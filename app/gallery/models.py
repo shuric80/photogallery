@@ -77,12 +77,13 @@ class Event(db.Model, MixinModel):
     __tablename__ = 'event'
 
     id = Column(Integer, primary_key=True)
-    photo = Column(Unicode(128))
-    title = Column(Unicode(512))
-    content = Column(Text(10000))
+    photo = Column(Unicode(32))
+    title = Column(Unicode(128))
+    description = Column(Unicode(512))
+    content = Column(Text(5000))
     tstamp = Column(DateTime, default=datetime.utcnow)
-    time_start = Column(DateTime)
-    time_end = Column(DateTime)
+    time_start = Column(DateTime, nullable=False)
+    time_end = Column(DateTime, nullable=False)
     hidden = Column(Boolean, default=False)
     
 

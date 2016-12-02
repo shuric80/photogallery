@@ -3,21 +3,22 @@
  * Copyright 2013-2016 Start Bootstrap
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
  */
+@import "bootstrap/less/bootstrap.less"
+
+
 @backcolor: #f8f8f8;
 @bgcolorPost: #c8c8c8;
 @colorFocus: #acac22;
+@color-section: @yellow;
+@color-section-title: #ADAADAD;
+@color-section-content: #9a9a9a;
+
 
 body,
 html {
     width: 100%;
     height: 100%;
-}
-
-.container {
-    padding-right:15px;
-    padding-left:15px;
-    margin-left:auto;
-    margin-right:auto;
+    background-color:@backcolor;
 }
 
 body,
@@ -50,11 +51,13 @@ h6 {
     padding-bottom:20px;
     width:100%;
     background-color:@bgcolorPost;
-
+    .description {
+        color:#333333;
+    }
     .date {
-        
-        
-        
+        color:#ff2200
+                  
+                  
     }
     a:link {
         color:#3388ff;
@@ -75,8 +78,8 @@ h6 {
     
     &:hover {
         background-color: @colorFocus;
-}
-          &:focus {
+    }
+    &:focus {
         background-color: @colorFocus;
     }
     &:active {
@@ -149,17 +152,24 @@ h6 {
     letter-spacing: 2px;
 }
 
-.content-section-a {
+.content-section {
+    background: @color-section;
     .title {
-        background-color: #aaaaaa;
+        background: @color-section-title;
+        border-radius:3px;
+        margin-top:20px;
+        height:5px;
+        background: -webkit-gradient(linear, left top, left bottom, from(@backcolor - #333333), to(@backcolor + #333333));
+        background: -moz-linear-gradient(top, @backcolor - #333333, @backcolor + #333333);
         text-align:center;
         font-size:24px;
+        color: #ffffff;
     }
     .content {
+        background: @color-section-content;
         border-left: 1px solid #aeaeae;
         padding-left:25px;
-
-        background-color: #f8f8f8;
+        
         border-top: 1px solid #efefef;
         background-image: url('http://placehold.it/1200x400');
         background-repeat:no-repeat;
@@ -167,16 +177,22 @@ h6 {
     }
 }
 
+
 .content-section-b {
     border-top: 1px solid #e7e7e7;
     border-bottom: 1px solid #e7e7e7;
-}
-
-.content-section {
-    border-top: 1px solid #e7e7e7;
-    border-bottom: 1px solid #e7e7e7;
+    .content-section;
 
 }
+.content-section-a {
+    .content-section;
+}
+
+
+.content-section-c {
+    .content-section;
+}
+
 .main_post {
     max-height:300px;
 }
@@ -248,41 +264,5 @@ footer {
 p.copyright {
     margin: 15px 0 0;
 }
-
-
-/*        post {
-            height:60px;
-            background-color:@backcolor;
-            //padding: 50px 0;
-            border-top: 1px solid #e7e7e7;
-            border-bottom:2px solid #8a8a8a;
-            border-radius:20px;
-            &:hover {
-                background-color:@backcolor - #222222;
-                border-top:1px solid;
-                border-left:1px solid;
-                border-color:@backcolor+ #222222;
-            }
-            &:active {
-                background-color:red;//@backcolor - #444444;
-            }
-            &:focus {
-                background-color:red;//@backcolor - #333333;
-            }
-            .time {
-                font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
-                font-weight: 700;
-                font-size:14px;
-                background-color:@backcolor + #000055;
-                color:@backcolor - #005555;
-                border-right-color:@backcolor - #555555;
-            }
-            button {
-                width:50px;
-                height:50px;
-                background-color:@backcolor - #555555;
-                text-align:center;
-                
-            }
-        }*/
+*/
 
