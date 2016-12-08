@@ -86,13 +86,13 @@ module.exports = function(grunt) {
             all: {
                 options: {
                     compress: true,
-                    report:true
+                   // report:true
                 },
                 files: {
-                    'app/static/css/main.css':'client/stylesheet/*.less'
+                    'app/static/css/main.css':'client/stylesheet/main.less'
                     
                 }
-            }
+            },
         }
     });
     
@@ -108,7 +108,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('main-bower-files');
     grunt.loadNpmTasks('grunt-contrib-copy');
-     grunt.loadNpmTasks('grunt-contrib-clean');
+    grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks("grunt-contrib-concat");
     grunt.loadNpmTasks('grunt-browser-sync');
     grunt.registerTask('default', ['jshint','concat','copy','uglify','less','cssmin']);
