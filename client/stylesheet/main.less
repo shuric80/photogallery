@@ -3,23 +3,15 @@
  * Copyright 2013-2016 Start Bootstrap
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
  */
-@import "bootstrap/less/bootstrap.less"
 
-
-@backcolor: #f8f8f8;
-@bgcolorPost: #c8c8c8;
-@colorFocus: #acac22;
-@color-section: @yellow;
-@color-section-title: #ADAADAD;
-@color-section-content: #9a9a9a;
-
+@import "less/bootstrap.less";
 
 body,
 html {
     width: 100%;
     height: 100%;
-    background-color:@backcolor;
 }
+
 
 body,
 h1,
@@ -50,8 +42,7 @@ h6 {
     margin-bottom:10px;
     padding-bottom:20px;
     width:100%;
-    background-color:@bgcolorPost;
-    .description {
+     .description {
         color:#333333;
     }
     .date {
@@ -75,9 +66,9 @@ h6 {
             width:100px;
         }
     };
-    
+    /*
     &:hover {
-        background-color: @colorFocus;
+        background-color: @blue;
     }
     &:focus {
         background-color: @colorFocus;
@@ -85,12 +76,12 @@ h6 {
     &:active {
         background-color: @colorFocus;
     }
-
+*/
 }
 
 
 .intro-header {
-    padding-top: 50px; /* If you're making other pages, make sure there is 50px of padding to make sure the navbar doesn't overlap content! */
+    padding-top: 50px;
     padding-bottom: 50px;
     text-align: center;
     color: #f8f8f8;
@@ -153,23 +144,18 @@ h6 {
 }
 
 .content-section {
-    background: @color-section;
+   
     .title {
-        background: @color-section-title;
-        border-radius:3px;
+       border-radius:3px;
         margin-top:20px;
         height:5px;
-        background: -webkit-gradient(linear, left top, left bottom, from(@backcolor - #333333), to(@backcolor + #333333));
-        background: -moz-linear-gradient(top, @backcolor - #333333, @backcolor + #333333);
         text-align:center;
         font-size:24px;
         color: #ffffff;
     }
     .content {
-        background: @color-section-content;
-        border-left: 1px solid #aeaeae;
+           border-left: 1px solid #aeaeae;
         padding-left:25px;
-        
         border-top: 1px solid #efefef;
         background-image: url('http://placehold.it/1200x400');
         background-repeat:no-repeat;
@@ -264,5 +250,3 @@ footer {
 p.copyright {
     margin: 15px 0 0;
 }
-*/
-

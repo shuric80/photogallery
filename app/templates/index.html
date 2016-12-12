@@ -54,9 +54,15 @@
         {% else %}
         <script src="{{ url_for('static',filename='js/app.min.js') }}"></script>
         {% endif %}
-        <div ui-view></div>
-
+        <div class="container">
+            <div class="row">
+                <div class="visible-lg">
+                </div>
+                <div ui-view></div>
+                </div>
+            </div>
         </div>
+        
         {% include 'footer.html' %}
     </body>
 </html>
