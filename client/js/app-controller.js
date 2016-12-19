@@ -81,8 +81,9 @@
                     vm.err = err;
                 });
         }
+            activate();
+
     }
-    activate();
 })();
 
 
