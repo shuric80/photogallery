@@ -6,10 +6,10 @@
             <a ui-sref="about">About</a>
             <h2 class="section-heading">{[vm.data.about.title]}</h2>
             <carousel interval="vm.myInterval">
-                <slide ng-repeat="slide in vm.data.slides" active="slide.active">
-                    <img ng-src="{[slide.image]}">
+                <slide ng-repeat="image in vm.data.images" active="image.active">
+                    <img ng-src="{[image.path]}">
                     <div class="carousel-caption">
-                        <h4>Slide {[slide.text]}</h4>
+                        <h4>Slide {[image.text]}</h4>
                     </div>
                 </slide>
             </carousel>
