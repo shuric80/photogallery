@@ -4,15 +4,21 @@
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
  */
 
+<<<<<<< HEAD
 @import "variables.less";
 
 
 /*
+=======
+@import "less/bootstrap.less";
+
+>>>>>>> FRM-10
 body,
 html {
     width: 100%;
     height: 100%;
 }
+
 
 body,
 h1,
@@ -34,198 +40,228 @@ h6 {
     font-weight: 400;
 }
 
+.post {
+    border-top:1px solid #333333;
+    border-top-right-radius:30px;
+    border-bottom-right-radius:20px;
+    border-bottom-left-radius:10px;
+    border-top-left-radius:10px;
+    margin-bottom:10px;
+    padding-bottom:20px;
+    width:100%;
+     .description {
+        color:#333333;
+    }
+    .date {
+        color:#ff2200
+                  
+                  
+    }
+    a:link {
+        color:#3388ff;
+    }
+    a:visited {
+        color:#000000;
+    }
+    img {
+        padding-right:20px;
+        border-radius:10px;
+        @media(min-width:900px){
+            width:200px;
+        }
+        @media(max-width:900px){
+            width:100px;
+        }
+    };
+    /*
+    &:hover {
+        background-color: @blue;
+    }
+    &:focus {
+        background-color: @colorFocus;
+    }
+    &:active {
+        background-color: @colorFocus;
+    }
+*/
+}
+
+
 .intro-header {
+<<<<<<< HEAD
     padding-top: 50px;  //If you're making other pages, make sure there is 50px of padding to make sure the navbar doesn't overlap content! 
+=======
+    padding-top: 50px;
+>>>>>>> FRM-10
     padding-bottom: 50px;
     text-align: center;
     color: #f8f8f8;
-    background: url(http://placehold.it/350x150) no-repeat center center;
-                    background-size: cover;
-                   }
+    background: url('http://placehold.it/350x150') no-repeat center center;
+    background-size: cover;
+}
 
+.intro-message {
+    position: relative;
+    padding-top: 20%;
+    padding-bottom: 20%;
+}
+
+.intro-message > h1 {
+    margin: 0;
+    text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+    font-size: 5em;
+}
+
+.intro-divider {
+    width: 400px;
+    border-top: 1px solid #f8f8f8;
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+}
+
+.intro-message > h3 {
+    text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+}
+
+@media(max-width:767px) {
     .intro-message {
-        position: relative;
-        padding-top: 20%;
-        padding-bottom: 20%;
+        padding-bottom: 15%;
     }
 
     .intro-message > h1 {
-        margin: 0;
-        text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
-        font-size: 5em;
+        font-size: 3em;
+    }
+
+    ul.intro-social-buttons > li {
+        display: block;
+        margin-bottom: 20px;
+        padding: 0;
+    }
+
+    ul.intro-social-buttons > li:last-child {
+        margin-bottom: 0;
     }
 
     .intro-divider {
-        width: 400px;
-        border-top: 1px solid #f8f8f8;
-        border-bottom: 1px solid rgba(0,0,0,0.2);
+        width: 100%;
     }
 
-    .intro-message > h3 {
+}
+
+.network-name {
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 2px;
+}
+
+.content-section {
+   
+    .title {
+       border-radius:3px;
+        margin-top:20px;
+        height:5px;
+        text-align:center;
+        font-size:24px;
+        color: #ffffff;
+    }
+    .content {
+           border-left: 1px solid #aeaeae;
+        padding-left:25px;
+        border-top: 1px solid #efefef;
+        background-image: url('http://placehold.it/1200x400');
+        background-repeat:no-repeat;
+        background-attachment:scroll;
+    }
+}
+
+
+.content-section-b {
+    border-top: 1px solid #e7e7e7;
+    border-bottom: 1px solid #e7e7e7;
+    .content-section;
+
+}
+.content-section-a {
+    .content-section;
+}
+
+
+.content-section-c {
+    .content-section;
+}
+
+.main_post {
+    max-height:300px;
+}
+
+.section-heading {
+    margin-bottom: 5px;
+}
+
+.section-heading-spacer {
+    float: left;
+    width: 800px;
+    border-top: 3px solid #e7e7e7;
+}
+
+.banner {
+    padding: 100px 0;
+    color: #f8f8f8;
+    background: url(http://placehold.it/350x150
+                   ) no-repeat center center;
+    background-size: cover;
+    
+
+    h2 {
+        margin: 0;
         text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+        font-size: 3em;
+    }
+
+    ul {
+        margin-bottom: 0;
+    }
+
+    .banner-social-buttons {
+        float: right;
+        margin-top: 0;
+    }
+
+    @media(max-width:1199px) {
+        ul.banner-social-buttons {
+            float: left;
+            margin-top: 15px;
+        }
     }
 
     @media(max-width:767px) {
-        .intro-message {
-            padding-bottom: 15%;
-        }
-
-        .intro-message > h1 {
-            font-size: 3em;
-        }
-
-        ul.intro-social-buttons > li {
-            display: block;
-            margin-bottom: 20px;
-            padding: 0;
-        }
-
-        ul.intro-social-buttons > li:last-child {
-            margin-bottom: 0;
-        }
-
-        .intro-divider {
-            width: 100%;
-        }
-    }
-
-    .network-name {
-        text-transform: uppercase;
-        font-size: 14px;
-        font-weight: 400;
-        letter-spacing: 2px;
-    }
-
-    .content-section-a {
-        .title {
-            background-color: #aaaaaa;
-            text-align:center;
-            font-size:24px;
-        }
-        .content {
-                    border-left: 1px solid #aeaeae;
-        padding-left:25px;
-
-            background-color: #f8f8f8;
-            border-top: 1px solid #efefef;
-            background-image: url('http://placehold.it/1200x400');
-            background-repeat:no-repeat;
-            background-attachment:scroll;
-        }}
-
-    .content-section-b {
-        border-top: 1px solid #e7e7e7;
-        border-bottom: 1px solid #e7e7e7;
-    }
-
-    .content-section {
-        border-top: 1px solid #e7e7e7;
-        border-bottom: 1px solid #e7e7e7;
-
-    }
-    .main_post {
-        max-height:300px;
-    }
-
-    .section-heading {
-        margin-bottom: 5px;
-    }
-
-    .section-heading-spacer {
-        float: left;
-        width: 800px;
-        border-top: 3px solid #e7e7e7;
-    }
-
-    .banner {
-        padding: 100px 0;
-        color: #f8f8f8;
-        background: url(http://placehold.it/350x150) no-repeat center center;
-                        background-size: cover;
-                       }
-
         .banner h2 {
             margin: 0;
             text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
             font-size: 3em;
         }
 
-        .banner ul {
+        ul.banner-social-buttons > li {
+            display: block;
+            margin-bottom: 20px;
+            padding: 0;
+        }
+
+        ul.banner-social-buttons > li:last-child {
             margin-bottom: 0;
         }
+    }
+}
 
-        .banner-social-buttons {
-            float: right;
-            margin-top: 0;
-        }
+footer {
+    padding: 50px 0;
+    background-color: #f8f8f8;
+}
 
-        @media(max-width:1199px) {
-            ul.banner-social-buttons {
-                float: left;
-                margin-top: 15px;
-            }
-        }
-
-        @media(max-width:767px) {
-            .banner h2 {
-                margin: 0;
-                text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
-                font-size: 3em;
-            }
-
-            ul.banner-social-buttons > li {
-                display: block;
-                margin-bottom: 20px;
-                padding: 0;
-            }
-
-            ul.banner-social-buttons > li:last-child {
-                margin-bottom: 0;
-            }
-        }
-
-        footer {
-            padding: 50px 0;
-            background-color: #f8f8f8;
-        }
-
-        p.copyright {
-            margin: 15px 0 0;
-        }
-
-        div.post {
-            height:60%;
-            background-color:@backcolor;
-            //padding: 50px 0;
-            border-top: 1px solid #e7e7e7;
-            border-bottom:2px solid #8a8a8a;
-            &:hover {
-                background-color:@backcolor - #222222;
-                border-top:1px solid;
-                border-left:1px solid;
-                border-color:@backcolor+ #222222;
-            }
-            &:active {
-                background-color:@backcolor - #444444;
-            }
-            &:focus {
-                background-color:@backcolor - #333333;
-            }
-            .time {
-                font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
-                font-weight: 700;
-                font-size:14px;
-                background-color:@backcolor + #000055;
-                color:@backcolor - #005555;
-                border-right-color:@backcolor - #555555;
-            }
-            button {
-                width:50px;
-                height:50px;
-                background-color:@backcolor - #555555;
-                text-align:center;
-                
-            }
-        }
-
+<<<<<<< HEAD
 */
+=======
+p.copyright {
+    margin: 15px 0 0;
+}
+>>>>>>> FRM-10

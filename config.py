@@ -6,6 +6,7 @@ class BaseConfig(object):
     DEBUG = False
     SECRET_KEY = "adqacfsae4adasae23"
     DATABASE_URL = os.path.join(os.path.dirname(__file__),'app.db')
+    STATIC_FOLDER = os.path.join(os.path.dirname(__file__),'app','static')
     SQLALCHEMY_DATABASE_URI = 'sqlite:///{}'.format(DATABASE_URL)
     CSRF_ENABLED = True
     BOWER_COMPONENTS_ROOT = '../bower_components'
@@ -20,6 +21,7 @@ class BaseConfig(object):
     MAIL_PASSWORD = 'mvgdwssbsgugejoa'
     # administrator list
     ADMINS = ['shuric80@gmail.com']
+    
 
     
 class DevelopmentConfig(BaseConfig):

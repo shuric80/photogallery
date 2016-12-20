@@ -71,9 +71,9 @@
 
     function IndexViewController(factoryEvent){
         var vm = this;
-        vm.myInterval = 5000;
-        function activate(){
+        vm.myInterval = 3000;
 
+        function activate(){
             factoryEvent.getIndexPage()
                 .then(function(data){
                     vm.data = data;
@@ -81,8 +81,9 @@
                     vm.err = err;
                 });
         }
-    }
-    activate();
+        activate();
+            }
+
 })();
 
 

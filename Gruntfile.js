@@ -53,6 +53,10 @@ module.exports = function(grunt) {
                     atBegin:true
                 }
             },
+            debug : {
+                files:['Gruntfile.js' , 'client/js/*.js', 'client/stylesheet/*.less','client/templates/*.html'],
+                tasks:['clean','jshint', 'less','copy:debug', 'copy:main'],
+            }
         },
         copy:{
             main:{
@@ -60,7 +64,13 @@ module.exports = function(grunt) {
                 cwd:'client/templates',
                 src:'*.html',
                 dest:'app/static/templates/'
-            }
+            },
+            debug :{
+                expand:true,
+                cwd: 'client/js/',
+                src:'*.js',
+                dest:'app/static/js/'
+            },
         },
         concat: {
             dist: {

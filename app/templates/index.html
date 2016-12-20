@@ -45,7 +45,7 @@
         <script src="{{ url_for('bower.static',filename='bootbox.js/bootbox.js') }}"></script>
         {#  <script src="{{ url_for('static',filename='js/main.min.js') }}"></script>
         #}
-        {% if false %}
+        {% if debug %}
         <script src="{{ url_for('static',filename='js/app-controller.js') }}"></script> 
         <script src="{{ url_for('static',filename='js/app-route.js') }}"></script> 
         <script src="{{ url_for('static',filename='js/app-factory.js') }}"></script> 
@@ -54,9 +54,15 @@
         {% else %}
         <script src="{{ url_for('static',filename='js/app.min.js') }}"></script>
         {% endif %}
-        <div ui-view></div>
-
+        <div class="container">
+            <div class="row">
+                <div class="visible-lg">
+                </div>
+                <div ui-view></div>
+                </div>
+            </div>
         </div>
+        
         {% include 'footer.html' %}
     </body>
 </html>

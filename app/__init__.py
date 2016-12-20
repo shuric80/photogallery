@@ -102,7 +102,7 @@ def not_found(error):
 @app.route('/')
 def index():
     debug = app.config['DEBUG']
-    return render_template('index.html', debug=debug)
+    return render_template('index.html', debug=False)
 
         
 @app.route('/api/about')
@@ -120,31 +120,35 @@ def news():
 
 @app.route('/api/index')
 def restindex():
-    about_ext = About.query.first()
-    news_ext = News.query.first()
-    events = Event.query
-    
-    about = dict(content=about_ext.content.split('<hr />')[0])
-    news = dict(title=news_ext.subject, content=news_ext.content.split('<hr />')[0])
-    
-    l_events = list()
+    images = Image.query
 
+    l_images = list()
+    for image in images:
+        l_images.append(dict( id= image.id,
+        path = '/'.join(('static', image.path)),
+        text = image.text,
+        name = image.name
+        ))
+
+    events = Event.query
+
+    l_events = list()
     for event in events:
-        l_events.append(dict( 
-            id = event.id,
-            title=event.title,
-            time_start= event.time_start,
-            time_end=event.time_end,
-            photo='http://placehold.it/300x200',
-            content=event.content.split('<hr />')[0][:400]))
-    
+        l_events.append(
+            dict(id= event.id,
+                 photo = '/'.join(('static',event.photo)),
+                 title=event.title,
+                 description=event.description,
+                 time_start=event.time_start.strftime('%c'),
+                 time_end=event.time_end
+            ))
+
     return jsonify(dict(
-        about = about, news = news,
-        events = l_events,
+          images = l_images,
+        events = l_events
     ))
     
-    return jsonify('ok')
-
+  
 
 
     

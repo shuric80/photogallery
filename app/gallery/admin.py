@@ -39,12 +39,26 @@ class BaseView(ModelView):
     edit_template = 'edit.html'
 
 
-class EventView(BaseView):
-    pass
-
-
 class MailView(BaseView):
     pass
+
+
+class EventView(BaseView):
+    def _list_thumbnail(view, context, model, name):
+        if not model.photo:
+            return ''
+
+        return Markup('<img src="%s"' % url_for('static',filename=form.thumbgen_filename(model.photo)))
+
+    column_formatters = {
+        'photo': _list_thumbnail
+    }
+
+    form_extra_fields = {
+        'photo': form.ImageUploadField('Image',
+                                       base_path=file_path,
+                                       thumbnail_size=(400, 300, True))
+    }
 
 
 class AboutView(BaseView):
@@ -74,7 +88,7 @@ class ImageAdmin(ModelView):
         'path': form.ImageUploadField('Image',
                                       base_path=file_path,
                                       thumbnail_size=(400, 300, True))
-}
+    }
 
 
     

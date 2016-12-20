@@ -11,5 +11,4 @@ env/
 activate
 bower_components/
 node_modules/
-app.db
 migrations/

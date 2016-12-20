@@ -11,7 +11,7 @@ from sqlalchemy.event import listens_for
 
 
 from app import db
-
+from app import app
 
 class MixinModel:
     def save(self):
@@ -77,12 +77,15 @@ class Event(db.Model, MixinModel):
     __tablename__ = 'event'
 
     id = Column(Integer, primary_key=True)
-    title = Column(Unicode(512))
-    content = Column(Text(10000))
+    photo = Column(Unicode(32))
+    title = Column(Unicode(128))
+    description = Column(Unicode(512))
+    content = Column(Text(5000))
     tstamp = Column(DateTime, default=datetime.utcnow)
-    time_start = Column(DateTime)
-    time_end = Column(DateTime)
+    time_start = Column(DateTime, nullable=False)
+    time_end = Column(DateTime, nullable=False)
     hidden = Column(Boolean, default=False)
+    
 
 
 class Mail(db.Model):
@@ -121,16 +124,8 @@ class Image(db.Model, MixinModel):
     def __unicode__(self):
         return self.title
 
-#file_path = op.join(op.dirname(__file__),'static')
-file_path = '/home/shuric/projects/photogallery/app/static/'
-
-
-try:
-  #os.mkdir(file_path)
-  pass
-except OSError:
-    pass
-
+    
+file_path = app.config.get('STATIC_FOLDER')
 
 @listens_for(Image, 'after_delete')
 def del_image(mapper, connection, target):
