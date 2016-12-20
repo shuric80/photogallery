@@ -96,13 +96,13 @@ module.exports = function(grunt) {
             all: {
                 options: {
                     compress: true,
-                    report:true
+                   // report:true
                 },
                 files: {
-                    'app/static/css/main.css':'client/stylesheet/*.less'
+                    'app/static/css/main.css':'client/stylesheet/main.less'
                     
                 }
-            }
+            },
         }
     });
     

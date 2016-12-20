@@ -120,6 +120,7 @@ def news():
 
 @app.route('/api/index')
 def restindex():
+<<<<<<< HEAD
     images = Image.query
 
     l_images = list()
@@ -146,6 +147,33 @@ def restindex():
     return jsonify(dict(
           images = l_images,
         events = l_events
+=======
+    about = About.query.first()
+    #news = News.query.first()
+    events = Event.query
+    images = Image.query.all()
+    about = dict(content=about.content)
+    #news = dict(title=news.subject, content=news.content)
+    
+    l_events = list()
+    l_images = list()
+    for event in events:
+        l_events.append(dict( 
+            id = event.id,
+            title=event.title,
+            time_start= event.time_start,
+            time_end=event.time_end,
+            photo='http://placehold.it/300x200',
+            content=event.content.split('<hr />')[0][:400]))
+
+    for image in images:
+        l_images.append(dict(text = image.text, path = '/'.join(('static',image.path))))
+        
+    return jsonify(dict(
+        about = about,
+        images = l_images,
+        events = l_events,
+>>>>>>> master
     ))
     
   

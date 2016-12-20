@@ -1,4 +1,26 @@
 <div class="container">
+<<<<<<< HEAD
+=======
+    <div class="row">
+        <div class="col-lg-10 offset-lg-1">
+            <hr class="section-heading-spacer">
+            <div class="clearfix"></div>
+            <a ui-sref="about">About</a>
+            <h2 class="section-heading">{[vm.data.about.title]}</h2>
+            <carousel interval="vm.myInterval">
+                <slide ng-repeat="image in vm.data.images" active="image.active">
+                    <img ng-src="{[image.path]}">
+                    <div class="carousel-caption">
+                        <h4>Slide {[image.text]}</h4>
+                    </div>
+                </slide>
+            </carousel>
+            <p class="lead"><markdown markdown-model="vm.data.about.content"></markdown>
+                <a ui-sref="about">
+                    <button type="button" class="btn btn-submit">Read more-></button>
+                </a>
+            </p>
+>>>>>>> master
 
     <div class="content-section-a">
         <div class="row">

@@ -81,9 +81,15 @@
                     vm.err = err;
                 });
         }
+<<<<<<< HEAD
         activate();
             }
 
+=======
+            activate();
+
+    }
+>>>>>>> master
 })();
 
 
