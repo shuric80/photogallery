@@ -13,11 +13,14 @@
         var id = $stateParams.id;
         
         vm.submit = function (form, user){
+            form.email="";
             if(form.$valid){
                 vm.user = angular.copy(user);
-                //this.rg = angular.copy({});
-                console.log(vm.user);
-                console.log(this);
+                factoryEvent.register(vm.user).then(
+                    function(res){
+                        vm.res=res;
+                     }, function(error){vm.err=error;});
+                
             }
 
         };
@@ -81,15 +84,10 @@
                     vm.err = err;
                 });
         }
-<<<<<<< HEAD
+
         activate();
-            }
-
-=======
-            activate();
-
     }
->>>>>>> master
+
 })();
 
 

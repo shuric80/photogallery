@@ -35,8 +35,8 @@
         function getNewsPage(){
             return $http.get('/api/news').then(handleSuccess, handleError());
         }
-        function register(){
-            return $http.post('/api/register').then(handleSuccess, handleError('Error register'));
+        function register(data){
+            return $http.post('/api/registration', data).then(handleSuccess, handleError('Error register'));
         }
         
         // private functions

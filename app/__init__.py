@@ -118,9 +118,33 @@ def news():
     return jsonify('news')
 
 
+@app.route('/api/registration', methods=['POST'])
+def register():
+    #logger.debug(request.get_json(silent=True))
+    if request.method == 'POST':
+        logger.info('Registration POST: %s' % request.data)
+        data = request.get_json(silent=True)
+        user = User()
+        user.name = data.get('name')
+        user.email = data.get('email')
+        user.tel = data.get('tel')
+        user.msg = data.get('msg')
+
+        if not user.is_valid:
+            logger.error('No valid form. Request:%s' % request)
+            return jsonify(False)
+
+        user.save()
+        #send_email(user)
+        return jsonify(True)
+
+    else:
+        return jsonify(False)
+
+
+
 @app.route('/api/index')
 def restindex():
-<<<<<<< HEAD
     images = Image.query
 
     l_images = list()
@@ -140,40 +164,13 @@ def restindex():
                  photo = '/'.join(('static',event.photo)),
                  title=event.title,
                  description=event.description,
-                 time_start=event.time_start.strftime('%c'),
-                 time_end=event.time_end
+                 time_start=event.time_start.strftime('%H:%M %d-%b-%Y'),
+                 time_end=event.time_end.strftime('%H:%M %d-%b-%Y')
             ))
 
     return jsonify(dict(
           images = l_images,
         events = l_events
-=======
-    about = About.query.first()
-    #news = News.query.first()
-    events = Event.query
-    images = Image.query.all()
-    about = dict(content=about.content)
-    #news = dict(title=news.subject, content=news.content)
-    
-    l_events = list()
-    l_images = list()
-    for event in events:
-        l_events.append(dict( 
-            id = event.id,
-            title=event.title,
-            time_start= event.time_start,
-            time_end=event.time_end,
-            photo='http://placehold.it/300x200',
-            content=event.content.split('<hr />')[0][:400]))
-
-    for image in images:
-        l_images.append(dict(text = image.text, path = '/'.join(('static',image.path))))
-        
-    return jsonify(dict(
-        about = about,
-        images = l_images,
-        events = l_events,
->>>>>>> master
     ))
     
   
@@ -187,8 +184,8 @@ def event(id):
         id = id,
         title = event.title,
         content=event.content,
-        time_start= event.time_start,
-        time_end=event.time_end
+        time_start= event.time_start.strftime('%H:%M %d-%b-%Y'),
+        #time_end=event.time_end
     ))
 
 

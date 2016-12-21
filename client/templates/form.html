@@ -8,7 +8,9 @@
                 <label for="name">Full name:</label>
                 <input id="name" name="name" type="name" placeholder="Pupkin" required/>
             </li><li>
+                <span style="color:red" ng-show="contact_form.&invalid">
                 <label for="email" >Email:</label>
+                </span>
                 <input id="email" placeholder="user@example.ru" name="email" type="email" required/>
                 <span class="form_hint">Proper format email</span>
             </li>
