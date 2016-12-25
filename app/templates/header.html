@@ -1,5 +1,5 @@
 <!-- Navigation -->
-<nav class="navbar" role="navigation">
+<nav class="custom_navbar" role="navigation">
     <div class="container topnav">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
@@ -15,16 +15,13 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a ui-sref="news">News</a>
+                    <a ng-click="vm.scrollTo('about')">About</a>
                 </li>
                 <li>
-                    <a ui-sref="about">About</a>
+                    <a ng-click="vm.scrollTo('events')">Events</a>
                 </li>
                 <li>
-                    <a ui-sref="listView">Events</a>
-                </li>
-                  <li>
-                    <a ui-sref="contact">Contact</a>
+                    <a ng-click="vm.scrollTo('contacts')">Contacts</a>
                 </li>
             </ul>
         </div>
@@ -32,10 +29,7 @@
     </div>
     <!-- /.container -->
 </nav>
-
-
 <!-- Header -->
-<a name="news"></a>
 <div class="intro-header">
     <div class="container">
         <div class="row">

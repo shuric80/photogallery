@@ -18,16 +18,6 @@
                         controllerAs:'vm'
                     }}
             })
-            .state('news',{
-                url:'/news',
-                views:{
-                    '':{
-                        templateUrl:'static/templates/news.html',
-                        controller:'NewsViewController',
-                        controllerAs:'vm'
-                    }
-                }
-            })
             .state('detailView', {
                 url:'/event/:id',
                 views:{
@@ -36,22 +26,6 @@
                         controller: 'DetailViewController',
                         controllerAs: 'vm'
                     }}
-            }).state('about',{
-                url:'/about',
-                views:{
-                    '':{
-                        templateUrl:'static/templates/about.html',
-                        controller:'AboutViewController',
-                        controllerAs:'vm'
-                    }}
-            }).state('listView',{
-                url:'/events',
-                views:{
-                    '':{
-                        templateUrl:'static/templates/events.html',
-                        controller:'ListViewController',
-                        controllerAs:'vm'
-                    }}
-            });
+                        });
   }
 })();

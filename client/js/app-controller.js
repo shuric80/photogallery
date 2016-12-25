@@ -19,7 +19,7 @@
                 factoryEvent.register(vm.user).then(
                     function(res){
                         vm.res=res;
-                     }, function(error){vm.err=error;});
+                    }, function(error){vm.err=error;});
                 
             }
 
@@ -70,12 +70,24 @@
         .module('app.index.controller',[])
         .controller('IndexViewController', IndexViewController);
     
-    IndexViewController.$inject = ['factoryEvent'];
+    IndexViewController.$inject = ['factoryEvent','$anchorScroll','$location'];
 
-    function IndexViewController(factoryEvent){
+    function IndexViewController(factoryEvent, $anchorScroll, $location){
         var vm = this;
         vm.myInterval = 3000;
+        console.log('index js');
 
+        vm.scrollTo = function(x){
+            console.log('goto');
+            var newHash = x;
+            if ($location.hash() !== newHash) {
+                $location.hash(x);
+            } else {
+                $anchorScroll();
+            }
+        };
+        
+        
         function activate(){
             factoryEvent.getIndexPage()
                 .then(function(data){

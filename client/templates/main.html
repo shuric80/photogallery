@@ -1,6 +1,7 @@
-<div class="container">
+<div ng-include="'/static/templates/header.html'"></div>
 
-    <div class="content-section-a">
+<div class="container">
+    <div id="about" class="content-section-a">
         <div class="row">
             <div class="title"></div>
             <div class="content">
@@ -21,20 +22,7 @@
         </div>
     </div>
 
-    <div class="content-section-b">
-        <div class="row">
-            <div class="title"></div>
-            <div class="content">
-                <div class="col-lg-12">
-                    <!-- hr class="section-heading-spacer"-->
-                    <div class="clearfix"></div>
-                    <markdown markdown-model="vm.data.about"></markdown>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="content-section-c">
+    <div id="events" class="content-section-c">
         <div class="title"></div>
         <div class="row" ng-repeat="event in vm.data.events" ng-if="$index % 2 == 0">
             <div class="col-lg-5 col-lg-offset-1 col-md-6 col-sm-12">
