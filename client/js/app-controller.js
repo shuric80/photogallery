@@ -9,16 +9,15 @@
     
     function DetailViewController($stateParams, factoryEvent){
         var vm = this;
-        
         var id = $stateParams.id;
         
         vm.submit = function (form, user){
-            form.email="";
             if(form.$valid){
                 vm.user = angular.copy(user);
-                factoryEvent.register(vm.user).then(
+               factoryEvent.register(vm.user).then(
                     function(res){
-                        vm.res=res;
+                        vm.rg = {};
+                                  vm.res=res;
                     }, function(error){vm.err=error;});
                 
             }
@@ -78,7 +77,6 @@
         console.log('index js');
 
         vm.scrollTo = function(x){
-            console.log('goto');
             var newHash = x;
             if ($location.hash() !== newHash) {
                 $location.hash(x);
