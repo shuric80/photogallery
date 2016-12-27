@@ -91,9 +91,6 @@ class ImageAdmin(ModelView):
     }
 
 
-    
-    
-
 class AdminView(ModelView):
 
     def is_accessible(self):
@@ -106,7 +103,7 @@ class UserView(ModelView):
     def is_accessible(self):
         return login.current_user.is_authenticated
 
-    
+
 class CustomAdminIndexView(AdminIndexView):
 
     @expose('/')

@@ -5,10 +5,12 @@ from app import bcrypt
 from datetime import datetime
 from sqlalchemy import Column, Integer, \
     Unicode, Text, \
-    DateTime, Boolean
+    DateTime, Boolean, \
+    ForeignKey
+
 from sqlalchemy.ext.hybrid import hybrid_property
 from sqlalchemy.event import listens_for
-
+from sqlalchemy.orm import relationship
 
 from app import db
 from app import app
@@ -64,6 +66,11 @@ class User(db.Model, MixinModel):
     email = Column(Unicode(64), nullable=False)
     message = Column(Unicode(1024))
     tstamp = Column(DateTime, default=datetime.utcnow)
+    event_id = Column(Integer, ForeignKey('event.id'))
+
+
+    def __repr__(self):
+        return "{name}".format(name=self.name)
 
     @property
     def is_valid(self):
@@ -85,7 +92,14 @@ class Event(db.Model, MixinModel):
     time_start = Column(DateTime, nullable=False)
     time_end = Column(DateTime, nullable=False)
     hidden = Column(Boolean, default=False)
-    
+
+    users = relationship("User", backref="event", lazy="dynamic")
+    mail = relationship("Mail", backref="event", uselist=False)
+
+
+    def __repr__(self):
+        return '{name}'.format(name=self.title)
+
 
 
 class Mail(db.Model):
@@ -94,6 +108,7 @@ class Mail(db.Model):
     id = Column(Integer, primary_key=True)
     subject = Column(Unicode(1024))
     text = Column(Text(5000))
+    event_id = Column(Integer, ForeignKey("event.id"))
 
 
 class News(db.Model, MixinModel):
