@@ -26,6 +26,16 @@
                         controller: 'DetailViewController',
                         controllerAs: 'vm'
                     }}
-                        });
-  }
+            })
+            .state('register', {
+                url:'/register/:id',
+                views:{
+                    '':{
+                        templateUrl:'static/templates/register.html',
+                        controller:'RegisterController',
+                        controllerAs:'vm'
+                    }
+                }
+            });
+    }
 })();

@@ -179,13 +179,16 @@ def restindex():
     
 @app.route('/api/event/<id>', methods=['GET','POST'])
 def event(id):
-    event = Event.query.filter_by(id = id).first()
+
+    event = Event.query.get(id)
     return jsonify(dict(
         id = id,
         title = event.title,
+        photo = ('/').join(('static',event.photo)),
+        description = event.description,
         content=event.content,
-        time_start= event.time_start.strftime('%H:%M %d-%b-%Y'),
-        #time_end=event.time_end
+        date = event.time_start.strftime('%d %b'),
+        time = event.time_start.strftime('%H:%m')
     ))
 
 
