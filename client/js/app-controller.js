@@ -36,18 +36,20 @@
     function RegisterController($stateParams, factoryEvent){
         var vm = this;
         var id = $stateParams.id;
+        vm.btn_show = true;
+        
         vm.submit = function (form, user){
-         if(form.$valid){
+            console.log('submit');
+            if(form.$valid){
                 vm.user = angular.copy(user);
-                console.log(id);
                 factoryEvent.register(id, vm.user).then(
                     function(res){
                         vm.rg = {};
-                        vm.res= res;
+                        vm.btn_show= false;
+                        vm.err = false;
                         
-                    }, function(error){vm.error = error;});
+                    }, function(error){vm.err = true;});
             }
-            console.log(vm.ret);
         };
     }
 })();

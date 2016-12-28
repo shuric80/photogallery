@@ -3,7 +3,7 @@
         <ul> 
             <li>
                 <!--  <h2>Registration</h2> -->
-                <span style="color:red" ng-show="rg.error"><h4>Error</h4></span>
+                <span style="color:red" ng-show="vm.err"><p>Error registration</p></span>
                 <span class="required_notification">Denotes Required Fields</span> 
             </li><li>
                 <label for="name">Full name:</label>
@@ -22,8 +22,9 @@
                 <textarea name="message" cols="40" ros="6" ng-model="rg.msg" spellcheck="true"></textarea>
             </li>
             <li>
-                <button class="submit" class="btn btn-warrning" value="send" type="submit" ng-click="vm.submit(contact_form, vm.rg)">Submit</button>
-                {[vm.error]}
+            
+                <button  class="submit" value="send" type="submit" ng-click="vm.submit(contact_form, vm.rg)">Submit</button>
+               
             </li>
         </ul>
     </form>
