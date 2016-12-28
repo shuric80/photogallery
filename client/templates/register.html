@@ -22,7 +22,8 @@
                 <textarea name="message" cols="40" ros="6" ng-model="rg.msg" spellcheck="true"></textarea>
             </li>
             <li>
-                <button class="submit" value="send" type="submit" ng-click="vm.submit(contact_form, vm.rg)">Submit</button>
+                <button class="submit" class="btn btn-warrning" value="send" type="submit" ng-click="vm.submit(contact_form, vm.rg)">Submit</button>
+                {[vm.error]}
             </li>
         </ul>
     </form>

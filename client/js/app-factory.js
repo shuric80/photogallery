@@ -11,10 +11,7 @@
 
         var factory = {};
         factory.getIndexPage = getIndexPage;
-        factory.getAboutPage = getAboutPage;
-        factory.getListPage = getListPage;
         factory.getDetailPage = getDetailPage;
-        factory.getNewsPage = getNewsPage;
         factory.register = register;
 
         return factory;
@@ -22,21 +19,12 @@
         function getIndexPage(){
             return $http.get('/api/index').then(handleSuccess, handleError('Error index page'));    
         }
-        function getAboutPage(){
-            return $http.get('/api/about').then(handleSuccess, handleError('Error about page'));    
-        }
-        function getListPage(){
-            return $http.get('/api/events.all').then(handleSuccess, handleError('Error events page'));    
-        }
         function getDetailPage(id){
             return $http.get('/api/event/'+id).then(handleSuccess, handleError('Error event page'));    
         }
 
-        function getNewsPage(){
-            return $http.get('/api/news').then(handleSuccess, handleError());
-        }
-        function register(data){
-            return $http.post('/api/registration', data).then(handleSuccess, handleError('Error register'));
+        function register(id, user){
+            return $http.post('/api/registration', {id:id,user:user}).then(handleSuccess, handleError('Error register'));
         }
         
         // private functions
