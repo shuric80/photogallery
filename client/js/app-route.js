@@ -7,35 +7,36 @@
     function config ($stateProvider, $urlRouterProvider, $interpolateProvider){
         $interpolateProvider.startSymbol('{[');
         $interpolateProvider.endSymbol(']}');
-        $urlRouterProvider.otherwise('/');
         $stateProvider
             .state('main',{
                 url:'/',
                 views:{
-                    '':{
+                    'main':{
                         templateUrl:'static/templates/main.html',
                         controller:'IndexViewController',
                         controllerAs:'vm'
                     }}
             })
-            .state('detailView', {
+            .state('event', {
                 url:'/event/:id',
                 views:{
-                    '':{
+                    'main': {
                         templateUrl:'static/templates/event.html',
-                        controller: 'DetailViewController',
+                        controller: 'EventViewController',
                         controllerAs: 'vm'
                     }}
             })
-            .state('register', {
-                url:'/register/:id',
-                views:{
-                    '':{
+            .state('event.register', {
+                url: '/register',
+                views: {
+                    'modal': {
                         templateUrl:'static/templates/register.html',
                         controller:'RegisterController',
                         controllerAs:'vm'
                     }
                 }
             });
+             $urlRouterProvider.otherwise('/');
+
     }
 })();

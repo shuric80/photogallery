@@ -54,7 +54,7 @@
         <script src="{{ url_for('static',filename='js/app.min.js') }}"></script>
         {% endif %}
         <div class="container">
-            <div ui-view></div>
+            <div ui-view name="main" autoscroll="true"></div>
         </div>
         </div>
         {% include 'footer.html' %}

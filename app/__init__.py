@@ -58,19 +58,16 @@ admin = Admin( app, name='frm', \
 
 
 from app.gallery.admin import AdminView, UserView, \
-    EventView, MailView, AboutView, NewsView, ImageAdmin
+    EventView, MailView, ImageAdmin
 
 
-from app.gallery.models import SuperUser, User, \
-    Event, Mail, News, About, Image
+from app.gallery.models import SuperUser, User, Event, Mail, Image
 
 
-admin.add_view(AdminView(SuperUser, db.session))
+#admin.add_view(AdminView(SuperUser, db.session))
 admin.add_view(UserView(User, db.session))
 admin.add_view(EventView(Event, db.session))   
 admin.add_view(MailView(Mail, db.session))
-admin.add_view(NewsView(News, db.session))
-admin.add_view(AboutView(About, db.session))
 admin.add_view(ImageAdmin(Image, db.session))
 
 """
@@ -125,10 +122,11 @@ def register():
         logger.info('Registration POST: %s' % request.data)
         data = request.get_json(silent=True)
         user = User()
-        user.name = data.get('name')
-        user.email = data.get('email')
-        user.tel = data.get('tel')
-        user.msg = data.get('msg')
+        user.name = data['user'].get('name')
+        user.email = data['user'].get('email')
+        user.tel = data['user'].get('tel')
+        user.msg = data['user'].get('msg')
+        user.event_id = data.get('event_id')
 
         if not user.is_valid:
             logger.error('No valid form. Request:%s' % request)

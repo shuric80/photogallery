@@ -110,24 +110,10 @@ class Mail(db.Model):
     text = Column(Text(5000))
     event_id = Column(Integer, ForeignKey("event.id"))
 
+    def __repr__(self):
+        return "Event:{event} Mail:{subject}".format(event = self.event_id, subject=self.subject)
 
-class News(db.Model, MixinModel):
-    __tablename__ = 'news'
-
-    id = Column(Integer, primary_key=True)
-    subject = Column(Unicode(128))
-    content = Column(Text(10124))
-    tstamp = Column(DateTime, default=datetime.utcnow)
-    hidden = Column(Boolean, default=False)
-
-
-class About(db.Model, MixinModel):
-    __tablename__ = 'about'
-
-    id = Column(Integer, primary_key=True)
-    content = Column(Text(2048))
-
-
+    
 class Image(db.Model, MixinModel):
     __tablename__ = 'image'
 

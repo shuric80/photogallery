@@ -1,8 +1,11 @@
 <div class="event">
     <div class="container">
         <div class="row">
-            <div class="col-lg-12">
+            <div class="col-lg-6">
                 <img ng-src="{[vm.event.photo]}">
+            </div>
+            <div class="col-lg-6">
+                <ui-view name="modal"></ui-view>
             </div>
         </div>
         <div class="row">
@@ -20,8 +23,9 @@
                 </div>
             </div>
             <div class="col-lg-2">
-                <a ui-sref="register({id:vm.id})" role="button" class="btn btn-success btn-lg">Register</a>
+                <a ui-sref=".register" role="button" class="btn btn-success btn-lg">Register</a>
             </div>
+
         </div>
         <div class="row">
             <div class="col-lg-4">

@@ -2,12 +2,11 @@
     'use strict';
     angular
         .module('app.event.controller',[])
-        .controller('DetailViewController', DetailViewController);
+        .controller('EventViewController', EventViewController);
 
-    DetailViewController.$inject =['$stateParams','factoryEvent'];
-
+    EventViewController.$inject =['$stateParams','factoryEvent'];
     
-    function DetailViewController($stateParams, factoryEvent){
+    function EventViewController($stateParams, factoryEvent){
         var vm = this;
         var id = $stateParams.id;
         vm.id = id;
@@ -32,17 +31,28 @@
         .controller('RegisterController', RegisterController);
 
     RegisterController.$inject = ['$stateParams', 'factoryEvent'];
-
+    console.log('load');
+    
     function RegisterController($stateParams, factoryEvent){
         var vm = this;
-        var id = $stateParams.id;
-        vm.btn_show = true;
+        //var event_id = $stateParams.id;
+        console.log('register');
+       
+        function activate() {
+            factoryEvent.getDetailPage(event_id)
+                .then(function(data){
+                    vm.event = data;
+                },function(err){
+                    
+                });
+        }
+        activate();
         
         vm.submit = function (form, user){
             console.log('submit');
             if(form.$valid){
                 vm.user = angular.copy(user);
-                factoryEvent.register(id, vm.user).then(
+                factoryEvent.register(event_id, vm.user).then(
                     function(res){
                         vm.rg = {};
                         vm.btn_show= false;

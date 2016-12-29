@@ -24,7 +24,7 @@
         }
 
         function register(id, user){
-            return $http.post('/api/registration', {id:id,user:user}).then(handleSuccess, handleError('Error register'));
+            return $http.post('/api/registration', {event_id:id,user:user}).then(handleSuccess, handleError('Error register'));
         }
         
         // private functions

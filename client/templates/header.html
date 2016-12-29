@@ -1,60 +1,62 @@
 <!-- Navigation -->
-<nav class="navbar navbar-fixed-top navbar-default" role="navigation">
-    <div class="container-fluid topnav">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand topnav" ui-sref="main">
-              <img alt="Home" src=""></a>
-        </div>
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-navbar-collapse">
-            <ul class="nav navbar-nav navbar-right">
-                <li class="{[vm.active]}">
-                    <a ng-click="vm.scrollTo('about')">About</a>
-                </li>
-                <li class="{[vm.active]}">
-                    <a ng-click="vm.scrollTo('events')">Events</a>
-                </li>
-                <li class="{[vm.active]}">
-                    <a ng-click="vm.scrollTo('contacts')">Contacts</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
-<!-- Header -->
-<div class="intro-header">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="intro-message">
-                    <h1>Back to Black</h1>
-                    <h3>Dance and rhythm</h3>
-                    <hr class="intro-divider">
-                    <ul class="list-inline intro-social-buttons">
-                        <li>
-                            <a href="https://twitter.com" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
-                        </li>
-                        <li>
-                            <a href="https://facebook.com" class="btn btn-default btn-lg"><i class="fa fa-facebook fa-fw"></i> <span class="network-name">Facebook</span></a>
-                        </li>
-                        <li>
-                            <a href="https://vk.com" class="btn btn-default btn-lg"><i class="fa fa-vk fa-fw"></i> <span class="network-name">Vkontacte</span></a>
-                        </li>
-                    </ul>
-                </div>
+<div class="custom_navbar">
+    <nav class="navbar navbar-fixed-top navbar-default" role="navigation">
+        <div class="container-fluid topnav">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand topnav" ui-sref="main">
+                    <img alt="Home" src=""></a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li ui-sref-active="active" class="{[vm.active]}">
+                        <a ng-click="vm.scrollTo('about')">About</a>
+                    </li>
+                    <li ui-sref-active="active" class="{[vm.active]}">
+                        <a ng-click="vm.scrollTo('events')">Events</a>
+                    </li>
+                    <li ui-sref-active="active" class="{[vm.active]}">
+                        <a ng-click="vm.scrollTo('contacts')">Contacts</a>
+                    </li>
+                </ul>
             </div>
         </div>
+    </nav>
+    <!-- Header -->
+    <div class="intro-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="intro-message">
+                        <h1>Back to Black</h1>
+                        <h3>Dance and rhythm</h3>
+                        <hr class="intro-divider">
+                        <ul class="list-inline intro-social-buttons">
+                            <li>
+                                <a href="https://twitter.com" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
+                            </li>
+                            <li>
+                                <a href="https://facebook.com" class="btn btn-default btn-lg"><i class="fa fa-facebook fa-fw"></i> <span class="network-name">Facebook</span></a>
+                            </li>
+                            <li>
+                                <a href="https://vk.com" class="btn btn-default btn-lg"><i class="fa fa-vk fa-fw"></i> <span class="network-name">Vkontacte</span></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- /.container -->
 
     </div>
-    <!-- /.container -->
+    <!-- /.intro-header -->
 
 </div>
-<!-- /.intro-header -->
-

@@ -60,13 +60,8 @@ class EventView(BaseView):
                                        thumbnail_size=(400, 300, True))
     }
 
+    column_exclude_list = ('event')
 
-class AboutView(BaseView):
-    pass
-
-
-class NewsView(BaseView):
-    pass
 
 
 class ImageAdmin(ModelView):
